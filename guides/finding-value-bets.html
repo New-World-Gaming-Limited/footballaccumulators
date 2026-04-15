@@ -18,7 +18,10 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="alternate" hreflang="en" href="https://footballaccumulators.com/guides/finding-value-bets">
 <link rel="alternate" hreflang="x-default" href="https://footballaccumulators.com/guides/finding-value-bets">
-<link rel="stylesheet" href="../assets/style.css">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../assets/style.css">
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://footballaccumulators.com/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://footballaccumulators.com/guides/"}, {"@type": "ListItem", "position": 3, "name": "Finding Value in Football Betting", "item": "https://footballaccumulators.com/guides/finding-value-bets"}]}</script>
 <!-- Google Analytics -->
@@ -71,6 +74,7 @@
   <a href="../bookmakers/" data-i18n="nav.bookmakers">Bookmakers</a>
   <a href="../about" data-i18n="nav.about">About</a>
 </nav>
+<div class="container" style="padding-top:12px;"><div class="freshness-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Updated: 15 April 2026</div></div>
 <main id="main">
 
 <section class="page-hero">
@@ -115,7 +119,15 @@
             <a href="../calculators/accumulator-calculator" class="btn btn-ghost btn-block btn-sm">Acca Calculator</a>
           </div>
         </div>
-      </aside>
+      <div class="sidebar-card card mt-16">
+    <h3>Calculators</h3>
+    <ul class="sidebar-links">
+      <li><a href="../tools/acca-calculator.html">Acca Calculator</a></li>
+      <li><a href="../tools/odds-converter.html">Odds Converter</a></li>
+      <li><a href="../tools/bet-returns-calculator.html">Bet Returns</a></li>
+    </ul>
+  </div>
+</aside>
     </div>
   </div>
 </section>
@@ -161,5 +173,18 @@
 </div>
 </footer>
 <script src="../assets/app.js"></script>
+<div class="mobile-sticky-cta" id="mobile-sticky-cta" role="complementary" aria-label="Quick navigation">
+  <div class="mobile-sticky-cta-inner">
+    <a href="../tips/index.html" class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Today's Tips
+    </a>
+    <a href="../tools/acca-builder.html" class="btn btn-outline">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Build Acca
+    </a>
+    <button class="dismiss-btn" aria-label="Dismiss" onclick="this.closest('.mobile-sticky-cta').classList.add('dismissed');">&times;</button>
+  </div>
+</div>
 </body>
 </html>

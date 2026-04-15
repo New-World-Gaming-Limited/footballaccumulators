@@ -962,3 +962,113 @@ document.addEventListener('DOMContentLoaded', function() {
   initOddsMovement();
   initLiveOdds();
 });
+
+
+// ============================================================
+// NEW ENHANCEMENTS — Appended
+// ============================================================
+
+// --- Stake/Return Preview on Tip Cards ---
+(function() {
+  var DEFAULT_STAKE = 10;
+  document.querySelectorAll('.tips-grid[data-stake-preview]').forEach(function(grid) {
+    var stake = parseFloat(grid.dataset.stakePreview) || DEFAULT_STAKE;
+    grid.querySelectorAll('.tip-card').forEach(function(card) {
+      var oddsEl = card.querySelector('[data-odds-dec]');
+      if (!oddsEl) return;
+      var dec = parseFloat(oddsEl.dataset.oddsDec);
+      if (!dec || dec <= 1) return;
+      var returnVal = (stake * dec).toFixed(2);
+      var preview = document.createElement('div');
+      preview.className = 'tip-card-return';
+      preview.innerHTML = '<span class="stake-label">\u00a3' + stake + ' stake</span><span class="return-value">Returns \u00a3' + returnVal + '</span>';
+      card.appendChild(preview);
+    });
+  });
+})();
+
+// --- Countdown Timer on Tip Cards ---
+(function() {
+  function updateCountdowns() {
+    document.querySelectorAll('.tip-card-time').forEach(function(el) {
+      var timeText = el.textContent.trim();
+      if (el.dataset.countdown === 'done') return;
+      var match = timeText.match(/^(\d{1,2}):(\d{2})$/);
+      if (!match) return;
+      var now = new Date();
+      var kickoff = new Date(now);
+      kickoff.setHours(parseInt(match[1], 10), parseInt(match[2], 10), 0, 0);
+      if (kickoff <= now) {
+        el.innerHTML = '<span style="color:var(--win);font-weight:600">LIVE</span>';
+        el.dataset.countdown = 'done';
+        return;
+      }
+      var diff = kickoff - now;
+      var hours = Math.floor(diff / 3600000);
+      var mins = Math.floor((diff % 3600000) / 60000);
+      if (hours > 0) {
+        el.innerHTML = '<span style="color:var(--draw)">' + hours + 'h ' + mins + 'm to KO</span>';
+      } else {
+        el.innerHTML = '<span style="color:var(--loss);font-weight:600">' + mins + 'm to KO</span>';
+      }
+    });
+  }
+  updateCountdowns();
+  setInterval(updateCountdowns, 60000);
+})();
+
+// --- Sticky Mobile CTA ---
+(function() {
+  var cta = document.querySelector('.mobile-sticky-cta');
+  if (!cta) return;
+  var dismiss = cta.querySelector('.dismiss-btn');
+  if (dismiss) {
+    dismiss.addEventListener('click', function() {
+      cta.classList.add('dismissed');
+    });
+  }
+})();
+
+// --- Tip Filters ---
+(function() {
+  var filters = document.querySelectorAll('.tip-filter-btn');
+  if (!filters.length) return;
+  filters.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var filter = btn.dataset.filter;
+      filters.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.querySelectorAll('.tip-card').forEach(function(card) {
+        if (filter === 'all') {
+          card.style.display = '';
+          return;
+        }
+        var market = card.querySelector('.tip-card-market');
+        if (market && market.textContent.toLowerCase().includes(filter.toLowerCase())) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+})();
+
+// --- Smart Picks Risk Labels ---
+(function() {
+  var smartPicks = document.querySelectorAll('.smart-pick');
+  smartPicks.forEach(function(pick) {
+    var odds = parseFloat(pick.dataset.totalOdds);
+    if (!odds) return;
+    var label, color;
+    if (odds < 4) { label = 'SAFE'; color = 'var(--win)'; }
+    else if (odds < 8) { label = 'BALANCED'; color = 'var(--draw)'; }
+    else { label = 'ADVENTUROUS'; color = 'var(--loss)'; }
+    var badge = document.createElement('span');
+    badge.className = 'smart-pick-risk';
+    badge.style.cssText = 'display:inline-block;padding:2px 8px;border-radius:var(--radius-full);font-size:0.6875rem;font-weight:700;letter-spacing:0.05em;color:white;background:' + color + ';margin-left:8px;';
+    badge.textContent = label;
+    var heading = pick.querySelector('h4, h3');
+    if (heading) heading.appendChild(badge);
+  });
+})();

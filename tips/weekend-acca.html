@@ -18,7 +18,10 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="alternate" hreflang="en" href="https://footballaccumulators.com/tips/weekend-acca">
 <link rel="alternate" hreflang="x-default" href="https://footballaccumulators.com/tips/weekend-acca">
-<link rel="stylesheet" href="../assets/style.css">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../assets/style.css">
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://footballaccumulators.com/"}, {"@type": "ListItem", "position": 2, "name": "Tips", "item": "https://footballaccumulators.com/tips/"}, {"@type": "ListItem", "position": 3, "name": "Weekend Tips", "item": "https://footballaccumulators.com/tips/weekend-acca"}]}</script>
 <!-- Google Analytics -->
@@ -149,7 +152,16 @@
             <a href="../calculators/accumulator-calculator" class="btn btn-ghost btn-block btn-sm">Calculate Returns</a>
           </div>
         </div>
-      </aside>
+      <div class="sidebar-card card mt-16">
+    <h3>League Tips</h3>
+    <ul class="sidebar-links">
+      <li><a href="../leagues/premier-league-accumulators.html">Premier League</a></li>
+      <li><a href="../leagues/la-liga-accumulators.html">La Liga</a></li>
+      <li><a href="../leagues/bundesliga-accumulators.html">Bundesliga</a></li>
+      <li><a href="../leagues/champions-league-accumulators.html">Champions League</a></li>
+    </ul>
+  </div>
+</aside>
     </div>
   </div>
 </section>
@@ -195,5 +207,18 @@
 </div>
 </footer>
 <script src="../assets/app.js"></script>
+<div class="mobile-sticky-cta" id="mobile-sticky-cta" role="complementary" aria-label="Quick navigation">
+  <div class="mobile-sticky-cta-inner">
+    <a href="../tips/index.html" class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Today's Tips
+    </a>
+    <a href="../tools/acca-builder.html" class="btn btn-outline">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Build Acca
+    </a>
+    <button class="dismiss-btn" aria-label="Dismiss" onclick="this.closest('.mobile-sticky-cta').classList.add('dismissed');">&times;</button>
+  </div>
+</div>
 </body>
 </html>

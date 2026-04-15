@@ -58,4 +58,16 @@
 <url><loc>https://footballaccumulators.com/tools/lay-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
 <url><loc>https://footballaccumulators.com/tools/margin-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
 <url><loc>https://footballaccumulators.com/tools/odds-converter</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+  <url>
+    <loc>https://www.footballaccumulators.com/how-we-pick.html</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.footballaccumulators.com/tips/bet-builder-tips.html</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

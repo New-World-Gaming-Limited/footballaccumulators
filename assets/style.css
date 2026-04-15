@@ -1947,3 +1947,331 @@ input, select, textarea { font: inherit; color: inherit; }
 [data-theme="dark"] .tracker-item { background: var(--surface-2); }
 [data-theme="dark"] .acca-picks-table th { background: var(--surface-2); }
 [data-theme="dark"] .acca-total-row { background: var(--surface-2); }
+
+
+/* ============================================================
+   NEW ENHANCEMENTS — Appended
+   ============================================================ */
+
+/* --- Breadcrumbs --- */
+.breadcrumbs {
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+  font-size: 0.8125rem;
+}
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.breadcrumb-item:not(:last-child)::after {
+  content: '›';
+  margin-left: 6px;
+  color: var(--text-muted);
+}
+.breadcrumb-item a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.breadcrumb-item a:hover { color: var(--accent); }
+.breadcrumb-item span { color: var(--text); font-weight: 500; }
+
+/* --- Freshness Badge --- */
+.freshness-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 12px;
+}
+.freshness-badge svg { flex-shrink: 0; }
+
+/* --- Tipster Byline --- */
+.tipster-byline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+}
+.tipster-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  flex-shrink: 0;
+}
+[data-theme="dark"] .tipster-avatar { color: var(--bg); }
+.tipster-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+.tipster-name { font-weight: 600; font-size: 0.875rem; color: var(--text); }
+.tipster-role { font-size: 0.75rem; color: var(--text-muted); }
+.tipster-record {
+  font-size: 0.75rem;
+  color: var(--win);
+  font-weight: 500;
+}
+.tipster-date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+@media (max-width: 480px) {
+  .tipster-byline { flex-wrap: wrap; }
+  .tipster-date { width: 100%; margin-top: 4px; }
+}
+
+/* --- Stake Return Preview --- */
+.tip-card-return {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--accent-light);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-size: 0.8125rem;
+  margin-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+.tip-card-return .stake-label { color: var(--text-secondary); }
+.tip-card-return .return-value { font-weight: 700; color: var(--accent); }
+
+/* --- Email Signup --- */
+.email-signup-section {
+  background: var(--accent);
+  color: white;
+  padding: 48px 0;
+  text-align: center;
+}
+[data-theme="dark"] .email-signup-section {
+  background: var(--surface-3);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.email-signup-section h2 {
+  color: white;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  margin-bottom: 8px;
+}
+[data-theme="dark"] .email-signup-section h2 { color: var(--accent); }
+.email-signup-section p {
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 24px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+[data-theme="dark"] .email-signup-section p { color: var(--text-secondary); }
+.email-signup-form {
+  display: flex;
+  gap: 8px;
+  max-width: 440px;
+  margin: 0 auto 16px;
+}
+.email-signup-form input[type="email"] {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.15);
+  color: white;
+  font-size: 0.9375rem;
+}
+.email-signup-form input[type="email"]::placeholder { color: rgba(255,255,255,0.6); }
+[data-theme="dark"] .email-signup-form input[type="email"] {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+[data-theme="dark"] .email-signup-form input[type="email"]::placeholder { color: var(--text-muted); }
+.email-signup-form button {
+  padding: 12px 24px;
+  background: white;
+  color: var(--accent);
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.email-signup-form button:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+[data-theme="dark"] .email-signup-form button {
+  background: var(--accent);
+  color: var(--bg);
+}
+.email-signup-note {
+  font-size: 0.8125rem;
+  color: rgba(255,255,255,0.6);
+}
+[data-theme="dark"] .email-signup-note { color: var(--text-muted); }
+
+/* --- Sticky Mobile CTA --- */
+.mobile-sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 10px 16px;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.12);
+}
+.mobile-sticky-cta-inner {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.mobile-sticky-cta .btn { flex: 1; text-align: center; padding: 10px 8px; font-size: 0.875rem; }
+.mobile-sticky-cta .dismiss-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  flex-shrink: 0;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+@media (max-width: 768px) {
+  .mobile-sticky-cta { display: block; }
+  body { padding-bottom: 64px; }
+}
+.mobile-sticky-cta.dismissed { display: none !important; }
+
+/* --- Track Record Table --- */
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin: 16px 0;
+}
+.results-table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border-bottom: 2px solid var(--border);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary);
+}
+.results-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--divider);
+}
+.results-table tr:hover td { background: var(--surface-2); }
+.results-table .text-win { color: var(--win); font-weight: 600; }
+.results-table .text-loss { color: var(--loss); font-weight: 600; }
+
+/* --- Bet Builder Cards --- */
+.bet-builder-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.bet-builder-match {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-bottom: 4px;
+}
+.bet-builder-league {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.bet-builder-legs {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+}
+.bet-builder-legs li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--divider);
+  font-size: 0.875rem;
+}
+.bet-builder-legs li:last-child { border-bottom: none; }
+.bet-builder-leg-odds {
+  font-weight: 600;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+.bet-builder-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--accent-light);
+  border-radius: var(--radius-md);
+  font-weight: 700;
+}
+.bet-builder-total-odds {
+  font-size: 1.25rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+/* --- Tip Filters --- */
+.tip-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.tip-filter-btn {
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.tip-filter-btn:hover, .tip-filter-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+[data-theme="dark"] .tip-filter-btn.active { color: var(--bg); }
