@@ -656,3 +656,309 @@ document.addEventListener('DOMContentLoaded', function() {
   initSmoothScroll();
   initGlossaryNav();
 });
+
+// ============================================================
+// PART 2: INTERACTIVE FEATURES
+// ============================================================
+
+// --- A) ACCA TRACKER ---
+function initAccaTracker() {
+  // In-memory tracker (no localStorage — iframe safe)
+  var accas = [];
+  var nextId = 1;
+
+  // Create floating button
+  var btn = document.createElement('button');
+  btn.className = 'tracker-btn';
+  btn.setAttribute('aria-label', 'My Accas Tracker');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><span class="tracker-btn-label">My Accas</span>';
+  document.body.appendChild(btn);
+
+  // Create panel
+  var panel = document.createElement('div');
+  panel.className = 'tracker-panel';
+  panel.setAttribute('aria-label', 'Acca Tracker Panel');
+  panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-modal', 'false');
+  panel.innerHTML = '<div class="tracker-panel-header">' +
+    '<h3>My Accas</h3>' +
+    '<button class="tracker-close" aria-label="Close tracker">' +
+    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>' +
+    '</button></div>' +
+    '<div class="tracker-panel-body" id="tracker-panel-body">' +
+    '<p class="tracker-empty">No accas saved yet. Build an acca and save it to track results.</p>' +
+    '</div>';
+  document.body.appendChild(panel);
+
+  // Toggle panel
+  function togglePanel() {
+    var isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', !isOpen);
+    renderTracker();
+  }
+
+  btn.addEventListener('click', togglePanel);
+  panel.querySelector('.tracker-close').addEventListener('click', togglePanel);
+
+  function renderTracker() {
+    var body = document.getElementById('tracker-panel-body');
+    if (!body) return;
+    if (!accas.length) {
+      body.innerHTML = '<p class="tracker-empty">No accas saved yet. Build an acca and save it to track results.</p>';
+      return;
+    }
+    var html = '<div class="tracker-list">';
+    accas.forEach(function(acca) {
+      var statusClass = 'status-' + acca.status;
+      var statusLabel = acca.status.charAt(0).toUpperCase() + acca.status.slice(1);
+      html += '<div class="tracker-item" data-id="' + acca.id + '">' +
+        '<div class="tracker-item-header">' +
+        '<span class="tracker-item-name">' + acca.name + '</span>' +
+        '<span class="tracker-status ' + statusClass + '">' + statusLabel + '</span>' +
+        '</div>' +
+        '<div class="tracker-item-meta">' +
+        '<span>Odds: ' + acca.odds + '</span>' +
+        '<span>' + acca.timestamp + '</span>' +
+        '</div>' +
+        '<div class="tracker-item-legs">' + acca.legs.map(function(l) {
+          return '<span class="tracker-leg">' + l + '</span>';
+        }).join('') + '</div>' +
+        '<div class="tracker-item-actions">' +
+        '<button class="btn btn-ghost btn-sm tracker-won" data-id="' + acca.id + '">Won</button>' +
+        '<button class="btn btn-ghost btn-sm tracker-lost" data-id="' + acca.id + '">Lost</button>' +
+        '<button class="btn btn-ghost btn-sm tracker-delete" data-id="' + acca.id + '">Delete</button>' +
+        '</div></div>';
+    });
+    html += '</div>';
+    body.innerHTML = html;
+
+    // Bind status buttons
+    body.querySelectorAll('.tracker-won').forEach(function(b) {
+      b.addEventListener('click', function() { updateStatus(+this.dataset.id, 'won'); });
+    });
+    body.querySelectorAll('.tracker-lost').forEach(function(b) {
+      b.addEventListener('click', function() { updateStatus(+this.dataset.id, 'lost'); });
+    });
+    body.querySelectorAll('.tracker-delete').forEach(function(b) {
+      b.addEventListener('click', function() { deleteAcca(+this.dataset.id); });
+    });
+  }
+
+  function updateStatus(id, status) {
+    accas.forEach(function(a) { if (a.id === id) a.status = status; });
+    renderTracker();
+  }
+
+  function deleteAcca(id) {
+    accas = accas.filter(function(a) { return a.id !== id; });
+    renderTracker();
+  }
+
+  // Public API: save an acca from builder
+  window.AccaTracker = {
+    save: function(name, legs, odds) {
+      var now = new Date();
+      var ts = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+      accas.push({ id: nextId++, name: name, legs: legs, odds: odds, status: 'pending', timestamp: ts });
+      panel.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      renderTracker();
+    }
+  };
+
+  // Hook into acca builder if present
+  var builderSaveBtn = document.getElementById('acca-save-to-tracker');
+  if (builderSaveBtn) {
+    builderSaveBtn.addEventListener('click', function() {
+      var legs = [];
+      document.querySelectorAll('.acca-selection').forEach(function(sel) {
+        var match = sel.querySelector('.sel-match');
+        var pick = sel.querySelector('.sel-pick');
+        if (match && pick) legs.push(match.textContent + ': ' + pick.textContent);
+      });
+      var totalOddsEl = document.getElementById('acca-total-odds');
+      var odds = totalOddsEl ? totalOddsEl.textContent : '--';
+      var name = 'Acca ' + new Date().toLocaleDateString('en-GB');
+      if (legs.length > 0) window.AccaTracker.save(name, legs, odds);
+    });
+  }
+}
+
+// --- B) BET OF THE DAY ---
+var BET_OF_DAY_DATA = [
+  { match: "Man City vs Arsenal", market: "Win Acca", pick: "Man City Win", odds: 1.85, confidence: 4 },
+  { match: "Bayern Munich vs Dortmund", market: "Over 2.5", pick: "Over 2.5 Goals", odds: 1.44, confidence: 5 },
+  { match: "Real Madrid vs Atletico", market: "Win Acca", pick: "Real Madrid Win", odds: 1.95, confidence: 4 },
+  { match: "Liverpool vs Chelsea", market: "BTTS", pick: "BTTS Yes", odds: 1.72, confidence: 4 },
+  { match: "PSV vs Ajax", market: "Over 2.5", pick: "Over 2.5 Goals", odds: 1.48, confidence: 5 },
+  { match: "Feyenoord vs AZ Alkmaar", market: "BTTS", pick: "BTTS Yes", odds: 1.60, confidence: 4 },
+  { match: "Inter Milan vs Napoli", market: "Win Acca", pick: "Inter Win", odds: 1.90, confidence: 3 },
+  { match: "Celtic vs Rangers", market: "BTTS", pick: "BTTS Yes", odds: 1.80, confidence: 4 },
+  { match: "Barcelona vs Villarreal", market: "Win Acca", pick: "Barcelona Win", odds: 1.55, confidence: 5 },
+  { match: "Tottenham vs Man Utd", market: "Over 2.5", pick: "Over 2.5 Goals", odds: 1.68, confidence: 3 },
+  { match: "Bayer Leverkusen vs Leipzig", market: "BTTS", pick: "BTTS Yes", odds: 1.65, confidence: 4 },
+  { match: "Monaco vs Lyon", market: "Over 2.5", pick: "Over 2.5 Goals", odds: 1.70, confidence: 4 },
+  { match: "PSG vs Marseille", market: "Win Acca", pick: "PSG Win", odds: 1.50, confidence: 5 },
+  { match: "Atalanta vs Roma", market: "BTTS", pick: "BTTS Yes", odds: 1.75, confidence: 4 },
+  { match: "Newcastle vs Aston Villa", market: "BTTS", pick: "BTTS Yes", odds: 1.78, confidence: 3 },
+  { match: "Dortmund vs Wolfsburg", market: "Win Acca", pick: "Dortmund Win", odds: 1.62, confidence: 4 },
+  { match: "Rangers vs Hearts", market: "Win Acca", pick: "Rangers Win", odds: 1.45, confidence: 4 },
+  { match: "Napoli vs Lazio", market: "Over 2.5", pick: "Over 2.5 Goals", odds: 1.75, confidence: 3 },
+  { match: "Ajax vs Utrecht", market: "Win Acca", pick: "Ajax Win", odds: 1.40, confidence: 5 },
+  { match: "Arsenal vs Chelsea", market: "BTTS", pick: "BTTS Yes", odds: 1.82, confidence: 4 },
+  { match: "Sevilla vs Betis", market: "BTTS", pick: "BTTS Yes", odds: 1.90, confidence: 3 },
+  { match: "Juventus vs Roma", market: "Win Acca", pick: "Juventus Win", odds: 1.80, confidence: 3 },
+  { match: "Hearts vs Hibernian", market: "Over 2.5", pick: "Over 2.5 Goals", odds: 1.70, confidence: 3 },
+  { match: "Eintracht vs Hoffenheim", market: "Over 2.5", pick: "Over 2.5 Goals", odds: 1.55, confidence: 4 },
+  { match: "Lens vs Reims", market: "Over 2.5", pick: "Over 2.5 Goals", odds: 1.70, confidence: 4 },
+  { match: "Twente vs Vitesse", market: "Over 2.5", pick: "Over 2.5 Goals", odds: 1.55, confidence: 4 },
+  { match: "AC Milan vs Fiorentina", market: "BTTS", pick: "BTTS Yes", odds: 1.72, confidence: 4 },
+  { match: "Atletico vs Barcelona", market: "Under 2.5", pick: "Under 2.5 Goals", odds: 1.65, confidence: 3 },
+  { match: "Man Utd vs Everton", market: "Win Acca", pick: "Man Utd Win", odds: 1.88, confidence: 3 },
+  { match: "Celtic vs Aberdeen", market: "Win Acca", pick: "Celtic Win", odds: 1.30, confidence: 5 },
+];
+
+function initBetOfDay() {
+  var el = document.getElementById('bet-of-day');
+  if (!el) return;
+
+  var dayOfYear = (function() {
+    var now = new Date();
+    var start = new Date(now.getFullYear(), 0, 0);
+    var diff = now - start;
+    var oneDay = 1000 * 60 * 60 * 24;
+    return Math.floor(diff / oneDay);
+  })();
+
+  var bet = BET_OF_DAY_DATA[dayOfYear % BET_OF_DAY_DATA.length];
+  var stars = '';
+  for (var i = 1; i <= 5; i++) {
+    stars += '<span class="confidence-star' + (i <= bet.confidence ? ' filled' : '') + '">&#9733;</span>';
+  }
+
+  el.innerHTML = '<div class="bet-of-day-inner">' +
+    '<div class="bet-of-day-badge"><span class="live-badge">&#9679; Today's Best Bet</span></div>' +
+    '<div class="bet-of-day-match" data-i18n="botd_match">' + bet.match + '</div>' +
+    '<div class="bet-of-day-row">' +
+    '<span class="badge">' + bet.market + '</span>' +
+    '<span class="badge badge-accent">' + bet.pick + '</span>' +
+    '</div>' +
+    '<div class="bet-of-day-odds-row">' +
+    '<span class="bet-of-day-odds-label">Odds:</span>' +
+    '<span class="bet-of-day-odds" data-odds-dec="' + bet.odds + '">' + bet.odds.toFixed(2) + '</span>' +
+    '</div>' +
+    '<div class="bet-of-day-confidence">' +
+    '<span class="confidence-label">Confidence:</span>' +
+    '<span class="confidence-stars" aria-label="Confidence ' + bet.confidence + ' out of 5">' + stars + '</span>' +
+    '</div>' +
+    '<a href="tips/index.html" class="btn btn-primary btn-sm bet-of-day-cta">View All Tips &rarr;</a>' +
+    '</div>';
+}
+
+// --- C) ODDS MOVEMENT INDICATORS ---
+function initOddsMovement() {
+  var hour = new Date().getHours();
+  var minute = new Date().getMinutes();
+  var seed = hour * 60 + minute;
+
+  // Simple deterministic pseudo-random from seed
+  function pseudoRand(n) {
+    var x = Math.sin(seed + n) * 10000;
+    return x - Math.floor(x);
+  }
+
+  var oddsEls = document.querySelectorAll('[data-odds-dec]');
+  oddsEls.forEach(function(el, i) {
+    if (el.closest('.odds-switcher')) return;
+    var r = pseudoRand(i * 17);
+    var direction = r < 0.4 ? 'up' : r < 0.7 ? 'down' : null;
+    if (!direction) return;
+    if (el.querySelector('.odds-movement')) return; // already added
+
+    var indicator = document.createElement('span');
+    indicator.className = 'odds-movement arrow-' + direction;
+    indicator.setAttribute('aria-label', direction === 'up' ? 'Odds shortened' : 'Odds drifted');
+    indicator.innerHTML = direction === 'up'
+      ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 15l-6-6-6 6"/></svg>'
+      : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>';
+    el.appendChild(indicator);
+  });
+}
+
+// --- D) LIVE ODDS API INTEGRATION ---
+function initLiveOdds() {
+  var API_URL = 'https://odds-api.io/v3/events?sport=soccer&bookmakers=bet365,1xbet';
+  var liveOddsMap = {};
+
+  function updateOddsFromLive(data) {
+    if (!data || !data.events) return;
+    data.events.forEach(function(event) {
+      var matchKey = (event.home_team + ' vs ' + event.away_team).toLowerCase();
+      if (event.bookmakers && event.bookmakers[0] && event.bookmakers[0].markets) {
+        event.bookmakers[0].markets.forEach(function(market) {
+          if (market.key === 'h2h') {
+            liveOddsMap[matchKey] = {
+              home: market.outcomes[0] && market.outcomes[0].price,
+              draw: market.outcomes[1] && market.outcomes[1].price,
+              away: market.outcomes[2] && market.outcomes[2].price,
+            };
+          }
+        });
+      }
+    });
+    applyLiveOdds();
+  }
+
+  function applyLiveOdds() {
+    // Update match rows with live odds where available
+    document.querySelectorAll('.match-row, .tip-card').forEach(function(row) {
+      var matchEl = row.querySelector('.match-teams, .tip-card-match-teams');
+      if (!matchEl) return;
+      var matchName = matchEl.textContent.trim().toLowerCase();
+      var liveData = liveOddsMap[matchName];
+      if (!liveData) return;
+
+      // Add Live badge
+      if (!row.querySelector('.live-badge')) {
+        var badge = document.createElement('span');
+        badge.className = 'live-badge';
+        badge.textContent = 'LIVE';
+        var header = row.querySelector('.tip-card-header, .match-header');
+        if (header) header.appendChild(badge);
+      }
+
+      // Update odds
+      var oddsEl = row.querySelector('[data-odds-dec]');
+      if (oddsEl && liveData.home) {
+        oddsEl.dataset.oddsDec = liveData.home;
+        oddsEl.textContent = parseFloat(liveData.home).toFixed(2);
+      }
+    });
+  }
+
+  // Try fetching live odds; fail gracefully
+  fetch(API_URL)
+    .then(function(res) {
+      if (!res.ok) throw new Error('API unavailable');
+      return res.json();
+    })
+    .then(function(data) {
+      updateOddsFromLive(data);
+    })
+    .catch(function() {
+      // Silently fall back to static data
+      console.log('[FootballAccumulators] Live odds API unavailable, using static data.');
+    });
+}
+
+// ============================================================
+// INITIALISE NEW FEATURES ON DOM READY
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+  initAccaTracker();
+  initBetOfDay();
+  initOddsMovement();
+  initLiveOdds();
+});

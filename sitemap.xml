@@ -1,201 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.footballaccumulators.com</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tips/</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tips/btts.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tips/over-25-goals.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tips/win-acca.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tips/correct-score.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tips/goalscorer.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tips/over-35-goals.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tools/acca-builder.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tools/calculators.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tools/acca-calculator.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tools/odds-converter.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tools/margin-calculator.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tools/dutching-calculator.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tools/each-way-calculator.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tools/lay-calculator.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tools/bet-returns-calculator.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/tools/arbitrage-calculator.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/glossary.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/betting/</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/betting/understanding-odds.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/betting/football-betting-markets.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/betting/bankroll-management.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/betting/value-betting-explained.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/betting/live-football-betting.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/betting/how-bookmakers-work.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/guides/</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/guides/what-is-an-accumulator.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/guides/acca-strategies.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/guides/acca-insurance-explained.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/guides/responsible-gambling.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/bookmakers/</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.footballaccumulators.com/about.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
+<url><loc>https://footballaccumulators.com/about</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/acca-builder</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/betting/bankroll-management</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/betting/football-betting-markets</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/betting/how-bookmakers-work</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/betting/</loc><lastmod>2026-04-15</lastmod><priority>0.8</priority></url>
+<url><loc>https://footballaccumulators.com/betting/live-football-betting</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/betting/understanding-odds</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/betting/value-betting-explained</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/bookmakers/</loc><lastmod>2026-04-15</lastmod><priority>0.8</priority></url>
+<url><loc>https://footballaccumulators.com/calculators/accumulator-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/calculators/arbitrage-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/calculators/bet-returns-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/calculators/dutching-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/calculators/each-way-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/calculators/</loc><lastmod>2026-04-15</lastmod><priority>0.8</priority></url>
+<url><loc>https://footballaccumulators.com/calculators/lay-bet-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/calculators/margin-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/calculators/odds-converter</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/glossary</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/guides/acca-insurance-explained</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/guides/acca-strategies</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/guides/bankroll-management</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/guides/finding-value-bets</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/guides/football-markets-explained</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/guides/</loc><lastmod>2026-04-15</lastmod><priority>0.8</priority></url>
+<url><loc>https://footballaccumulators.com/guides/live-betting-guide</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/guides/responsible-gambling</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/guides/understanding-odds</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/guides/what-is-an-accumulator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/</loc><lastmod>2026-04-15</lastmod><priority>1.0</priority></url>
+<url><loc>https://footballaccumulators.com/leagues/bundesliga-accumulators</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/leagues/champions-league-accumulators</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/leagues/eredivisie-accumulators</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/leagues/</loc><lastmod>2026-04-15</lastmod><priority>0.8</priority></url>
+<url><loc>https://footballaccumulators.com/leagues/la-liga-accumulators</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/leagues/ligue-1-accumulators</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/leagues/premier-league-accumulators</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/leagues/scottish-premiership-accumulators</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/leagues/serie-a-accumulators</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tips/btts</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tips/correct-score</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tips/goalscorer</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tips/</loc><lastmod>2026-04-15</lastmod><priority>0.8</priority></url>
+<url><loc>https://footballaccumulators.com/tips/over-25-goals</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tips/over-35-goals</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tips/weekend-acca</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tips/win-acca</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tools/acca-builder</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tools/acca-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tools/arbitrage-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tools/bet-returns-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tools/calculators</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tools/dutching-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tools/each-way-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tools/lay-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tools/margin-calculator</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
+<url><loc>https://footballaccumulators.com/tools/odds-converter</loc><lastmod>2026-04-15</lastmod><priority>0.7</priority></url>
 </urlset>
