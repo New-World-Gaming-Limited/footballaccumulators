@@ -199,7 +199,7 @@ input, select, textarea { font: inherit; color: inherit; }
   justify-content: space-between;
   height: 100%;
 }
-.logo {
+.site-logo, .logo {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -209,23 +209,41 @@ input, select, textarea { font: inherit; color: inherit; }
   color: var(--text);
   text-decoration: none;
 }
-.logo svg { flex-shrink: 0; }
+.site-logo svg, .logo svg { flex-shrink: 0; }
+.logo-text { color: var(--text); font-family: var(--font-display); font-weight: 700; }
 .logo-text span { color: var(--accent); }
 
-.nav-desktop { display: flex; align-items: center; gap: 4px; }
-.nav-desktop a {
+/* Desktop Nav — matches .main-nav > .nav-list > li > .dropdown */
+.main-nav, .nav-desktop { display: flex; align-items: center; gap: 4px; }
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-list > li { position: relative; }
+.nav-link, .main-nav a, .nav-desktop a {
+  display: block;
   padding: 8px 14px;
   font-size: 14px;
   font-weight: 500;
   color: var(--text-secondary);
   border-radius: var(--radius-md);
   transition: all var(--transition);
+  text-decoration: none;
 }
+.nav-link:hover, .nav-link.active,
+.main-nav a:hover, .main-nav a.active,
 .nav-desktop a:hover, .nav-desktop a.active {
   color: var(--accent);
   background: var(--accent-glow);
 }
-.nav-desktop .dropdown { position: relative; }
+
+/* Dropdown menus */
+.has-dropdown { position: relative; }
+.has-dropdown > .dropdown,
 .nav-desktop .dropdown-menu {
   visibility: hidden;
   opacity: 0;
@@ -242,7 +260,11 @@ input, select, textarea { font: inherit; color: inherit; }
   z-index: 200;
   transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
   pointer-events: none;
+  list-style: none;
+  margin: 0;
 }
+.has-dropdown:hover > .dropdown,
+.has-dropdown:focus-within > .dropdown,
 .nav-desktop .dropdown:hover .dropdown-menu,
 .nav-desktop .dropdown:focus-within .dropdown-menu {
   visibility: visible;
@@ -250,15 +272,20 @@ input, select, textarea { font: inherit; color: inherit; }
   transform: translateX(-50%) translateY(0);
   pointer-events: auto;
 }
+.has-dropdown > .dropdown a,
 .nav-desktop .dropdown-menu a {
   display: block;
   padding: 10px 14px;
   font-size: 14px;
+  color: var(--text-secondary);
   border-radius: var(--radius-sm);
   transition: background 0.1s ease;
+  text-decoration: none;
 }
+.has-dropdown > .dropdown a:hover,
 .nav-desktop .dropdown-menu a:hover {
   background: var(--accent-glow);
+  color: var(--accent);
 }
 
 .header-actions { display: flex; align-items: center; gap: 8px; }
@@ -284,7 +311,7 @@ input, select, textarea { font: inherit; color: inherit; }
   color: var(--text-secondary);
 }
 @media (max-width: 900px) {
-  .nav-desktop { display: none; }
+  .main-nav, .nav-desktop { display: none; }
   .hamburger { display: flex; }
 }
 
@@ -2275,3 +2302,412 @@ input, select, textarea { font: inherit; color: inherit; }
   border-color: var(--accent);
 }
 [data-theme="dark"] .tip-filter-btn.active { color: var(--bg); }
+
+/* ================================================================
+   CSS PATCH — Missing selectors for actual HTML class names
+   Appended to fix class mismatches between CSS and HTML
+   ================================================================ */
+
+/* --- Hero Section (HTML uses hero-overlay, hero-content, hero-title etc.) --- */
+.hero--home {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-color: #052e16;
+  padding: 80px 0 64px;
+  color: white;
+  overflow: hidden;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(5,46,22,0.92) 0%, rgba(5,46,22,0.75) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  color: white;
+}
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.7;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 28px;
+}
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* --- Stats Bar --- */
+.stats-bar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  text-align: center;
+}
+.stat-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.2;
+}
+.stat-label {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* --- Tips Grid --- */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* --- Quick Links Grid --- */
+.quick-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+.quick-link-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 12px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text);
+  border-radius: var(--radius-md);
+  transition: all var(--transition);
+}
+.quick-link-card:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+.quick-link-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+.quick-link-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* --- Guides Grid --- */
+.guides-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+.guide-card-body {
+  padding: 16px;
+}
+.guide-card-body h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text);
+  line-height: 1.3;
+}
+.guide-card-body p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.guide-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+/* --- Bookmaker Grid & Cards --- */
+.bm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.bookmaker-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  transition: all var(--transition);
+}
+.bookmaker-card:hover { box-shadow: var(--shadow-md); border-color: var(--accent); }
+.bm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.bm-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--text);
+}
+.bm-rating { color: var(--gold); font-size: 0.875rem; }
+.bm-rating .star { margin-right: 1px; }
+.bm-offer {
+  font-size: 0.875rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.bm-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.bm-features li {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  background: var(--surface-2);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+}
+.bm-disclaimer {
+  margin-top: 8px;
+}
+
+/* --- Bookmaker Review Cards (bookmakers/index.html) --- */
+.bm-review-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.bm-review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.bm-review-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text);
+}
+.bm-review-offer {
+  font-size: 0.8125rem;
+  padding: 4px 12px;
+}
+.bm-review-text {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.bm-review-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.bm-list {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 8px 0 0;
+}
+.bm-list li {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+/* --- FAQ Section --- */
+.faq-section { background: var(--surface-2); }
+
+/* --- Footer Columns --- */
+.footer-col h4, .footer-col-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--text);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-col li { margin-bottom: 6px; }
+.footer-col a {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.footer-col a:hover { color: var(--accent); }
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.footer-tagline {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.footer-disclaimer {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.footer-legal {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* --- Section Header Layout --- */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.section-header h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--text);
+  margin: 0;
+}
+
+/* --- Bet of the Day Card --- */
+.bet-of-day-card {
+  background: linear-gradient(135deg, #052e16, #0a4a2e);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  color: white;
+  min-height: 100px;
+}
+.bet-of-day-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* --- Sidebar --- */
+.sidebar-card {
+  padding: 20px;
+}
+.sidebar-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar-links li {
+  margin-bottom: 4px;
+}
+.sidebar-links a {
+  display: block;
+  padding: 6px 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.sidebar-links a:hover { color: var(--accent); }
+.sidebar-card h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+/* --- Tip Actions --- */
+.tip-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* --- SEO Content / Prose --- */
+.seo-section { background: var(--surface-2); }
+.prose h2 {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.prose p {
+  margin-bottom: 16px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+.prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.prose a:hover { color: var(--accent-hover); }
+.prose strong { color: var(--text); font-weight: 600; }
+
+/* --- Page Layout (content + sidebar) --- */
+.page-content-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 32px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .page-content-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Responsive fixes for new sections --- */
+@media (max-width: 640px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .stat-number { font-size: 1.5rem; }
+  .tips-grid { grid-template-columns: 1fr; }
+  .quick-links-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .guides-grid { grid-template-columns: 1fr; }
+  .bm-grid { grid-template-columns: 1fr; }
+  .bm-review-grid { grid-template-columns: 1fr; }
+  .hero--home { padding: 48px 0 40px; }
+  .hero-title { font-size: 1.75rem; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; text-align: center; }
+}
