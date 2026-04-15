@@ -1,0 +1,658 @@
+/* ============================================================
+   Football Accumulators — Enhanced JS
+   Odds Switcher, Calculators, Acca Builder, FAQ, Theme
+   ============================================================ */
+
+// --- Odds Conversion Utilities ---
+var OddsUtil = {
+  decToFrac: function(dec) {
+    if (dec <= 1) return '0/1';
+    var num = dec - 1;
+    var precision = 1000;
+    var gcd = function(a, b) { return b ? gcd(b, a % b) : a; };
+    var top = Math.round(num * precision);
+    var bot = precision;
+    var d = gcd(top, bot);
+    return (top / d) + '/' + (bot / d);
+  },
+  decToAmer: function(dec) {
+    if (dec >= 2) return '+' + Math.round((dec - 1) * 100);
+    if (dec > 1) return '-' + Math.round(100 / (dec - 1));
+    return '+100';
+  },
+  fracToDec: function(frac) {
+    var parts = frac.split('/');
+    if (parts.length !== 2) return 0;
+    return (parseFloat(parts[0]) / parseFloat(parts[1])) + 1;
+  },
+  amerToDec: function(amer) {
+    var n = parseFloat(amer);
+    if (n > 0) return (n / 100) + 1;
+    if (n < 0) return (100 / Math.abs(n)) + 1;
+    return 2;
+  },
+  decToImplied: function(dec) {
+    if (dec <= 0) return 0;
+    return (1 / dec) * 100;
+  },
+  formatOdds: function(dec, fmt) {
+    if (fmt === 'fractional') return OddsUtil.decToFrac(dec);
+    if (fmt === 'american') return OddsUtil.decToAmer(dec);
+    return dec.toFixed(2);
+  }
+};
+
+// --- Global Odds Format State ---
+var currentOddsFormat = 'decimal';
+
+function setOddsFormat(fmt) {
+  currentOddsFormat = fmt;
+  // Update all switcher buttons
+  document.querySelectorAll('.odds-switcher .tab-filter').forEach(function(btn) {
+    btn.classList.toggle('active', btn.dataset.format === fmt);
+  });
+  // Update all odds displays
+  document.querySelectorAll('[data-odds-dec]').forEach(function(el) {
+    var dec = parseFloat(el.dataset.oddsDec);
+    el.textContent = OddsUtil.formatOdds(dec, fmt);
+  });
+  // Update acca builder buttons
+  document.querySelectorAll('.match-odds button[data-odds]').forEach(function(btn) {
+    var dec = parseFloat(btn.dataset.odds);
+    btn.textContent = OddsUtil.formatOdds(dec, fmt);
+  });
+}
+
+// --- Theme Toggle ---
+(function() {
+  var toggle = document.querySelector('[data-theme-toggle]');
+  var root = document.documentElement;
+  var theme = root.getAttribute('data-theme') || 'light';
+
+  function updateIcon() {
+    if (!toggle) return;
+    toggle.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+    toggle.innerHTML = theme === 'dark'
+      ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+  updateIcon();
+  if (toggle) {
+    toggle.addEventListener('click', function() {
+      theme = theme === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', theme);
+      updateIcon();
+    });
+  }
+})();
+
+// --- Mobile Nav ---
+(function() {
+  var hamburger = document.querySelector('.hamburger');
+  var mobileNav = document.querySelector('.mobile-nav');
+  if (!hamburger || !mobileNav) return;
+  hamburger.addEventListener('click', function() {
+    mobileNav.classList.toggle('open');
+    var isOpen = mobileNav.classList.contains('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    hamburger.innerHTML = isOpen
+      ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>'
+      : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+  });
+})();
+
+// --- FAQ Accordion ---
+document.querySelectorAll('.faq-question').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var item = this.closest('.faq-item');
+    var answer = item.querySelector('.faq-answer');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(o) {
+      o.classList.remove('open');
+      o.querySelector('.faq-answer').style.maxHeight = null;
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  });
+});
+
+// --- Odds Switcher Init ---
+document.querySelectorAll('.odds-switcher .tab-filter').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    setOddsFormat(this.dataset.format);
+  });
+});
+
+// ============================================================
+// CALCULATORS
+// ============================================================
+
+// --- Accumulator Calculator ---
+function initAccaCalc() {
+  var form = document.getElementById('acca-calc');
+  if (!form) return;
+  var stakeInput = document.getElementById('calc-stake');
+  var oddsContainer = document.getElementById('calc-odds-list');
+  var addBtn = document.getElementById('calc-add-leg');
+  var resultEl = document.getElementById('calc-result');
+  var profitEl = document.getElementById('calc-profit');
+  var totalOddsEl = document.getElementById('calc-total-odds');
+  var legCount = 2;
+
+  function addLeg() {
+    legCount++;
+    var row = document.createElement('div');
+    row.className = 'calc-row';
+    row.innerHTML = '<span class="calc-label" data-i18n="leg">Leg ' + legCount + '</span>' +
+      '<input type="number" step="0.01" min="1.01" placeholder="e.g. 2.10" class="calc-input calc-odds-input">' +
+      '<button type="button" class="btn btn-ghost btn-sm calc-remove-leg" aria-label="Remove">' +
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>';
+    oddsContainer.appendChild(row);
+    row.querySelector('.calc-remove-leg').addEventListener('click', function() {
+      row.remove(); legCount--; renumberLegs(); calculate();
+    });
+    row.querySelector('.calc-odds-input').addEventListener('input', calculate);
+  }
+
+  function renumberLegs() {
+    oddsContainer.querySelectorAll('.calc-row').forEach(function(r, i) {
+      r.querySelector('.calc-label').textContent = 'Leg ' + (i + 1);
+    });
+  }
+
+  function calculate() {
+    var stake = parseFloat(stakeInput.value) || 0;
+    var inputs = oddsContainer.querySelectorAll('.calc-odds-input');
+    var totalOdds = 1; var valid = true;
+    inputs.forEach(function(inp) {
+      var v = parseFloat(inp.value);
+      if (!v || v < 1.01) { valid = false; return; }
+      totalOdds *= v;
+    });
+    if (!valid || stake <= 0) {
+      resultEl.textContent = '0.00'; profitEl.textContent = '0.00'; totalOddsEl.textContent = '-'; return;
+    }
+    resultEl.textContent = (stake * totalOdds).toFixed(2);
+    profitEl.textContent = ((stake * totalOdds) - stake).toFixed(2);
+    totalOddsEl.textContent = totalOdds.toFixed(2);
+  }
+
+  if (addBtn) addBtn.addEventListener('click', addLeg);
+  if (stakeInput) stakeInput.addEventListener('input', calculate);
+  oddsContainer.querySelectorAll('.calc-odds-input').forEach(function(inp) {
+    inp.addEventListener('input', calculate);
+  });
+}
+
+// --- Odds Converter Calculator ---
+function initOddsConverter() {
+  var decIn = document.getElementById('conv-decimal');
+  var fracIn = document.getElementById('conv-fractional');
+  var amerIn = document.getElementById('conv-american');
+  var impliedEl = document.getElementById('conv-implied');
+  if (!decIn) return;
+
+  decIn.addEventListener('input', function() {
+    var d = parseFloat(this.value);
+    if (d && d > 1) {
+      fracIn.value = OddsUtil.decToFrac(d);
+      amerIn.value = OddsUtil.decToAmer(d);
+      impliedEl.textContent = OddsUtil.decToImplied(d).toFixed(1) + '%';
+    }
+  });
+  fracIn.addEventListener('input', function() {
+    var d = OddsUtil.fracToDec(this.value);
+    if (d > 1) {
+      decIn.value = d.toFixed(2);
+      amerIn.value = OddsUtil.decToAmer(d);
+      impliedEl.textContent = OddsUtil.decToImplied(d).toFixed(1) + '%';
+    }
+  });
+  amerIn.addEventListener('input', function() {
+    var d = OddsUtil.amerToDec(this.value);
+    if (d > 1) {
+      decIn.value = d.toFixed(2);
+      fracIn.value = OddsUtil.decToFrac(d);
+      impliedEl.textContent = OddsUtil.decToImplied(d).toFixed(1) + '%';
+    }
+  });
+}
+
+// --- Margin Calculator ---
+function initMarginCalc() {
+  var inputs = document.querySelectorAll('.margin-odds-input');
+  var marginEl = document.getElementById('margin-result');
+  var fairOddsEl = document.getElementById('margin-fair-odds');
+  if (!inputs.length || !marginEl) return;
+
+  function calc() {
+    var sum = 0; var odds = []; var valid = true;
+    inputs.forEach(function(inp) {
+      var v = parseFloat(inp.value);
+      if (!v || v <= 1) { valid = false; return; }
+      sum += 1 / v;
+      odds.push(v);
+    });
+    if (!valid) { marginEl.textContent = '-'; if (fairOddsEl) fairOddsEl.innerHTML = ''; return; }
+    var margin = ((sum - 1) * 100).toFixed(2);
+    marginEl.textContent = margin + '%';
+    if (fairOddsEl) {
+      var html = '';
+      odds.forEach(function(o, i) {
+        var fair = o * sum;
+        html += '<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:14px"><span>Outcome ' + (i+1) + '</span><span class="font-mono text-accent">' + fair.toFixed(2) + '</span></div>';
+      });
+      fairOddsEl.innerHTML = html;
+    }
+  }
+  inputs.forEach(function(inp) { inp.addEventListener('input', calc); });
+}
+
+// --- Dutching Calculator ---
+function initDutchingCalc() {
+  var stakeIn = document.getElementById('dutch-stake');
+  var container = document.getElementById('dutch-selections');
+  var addBtn = document.getElementById('dutch-add');
+  var resultEl = document.getElementById('dutch-result');
+  if (!stakeIn || !container) return;
+  var count = 2;
+
+  function addSelection() {
+    count++;
+    var row = document.createElement('div');
+    row.className = 'calc-row';
+    row.innerHTML = '<span class="calc-label">Selection ' + count + '</span>' +
+      '<input type="number" step="0.01" min="1.01" placeholder="Odds" class="calc-input dutch-odds">' +
+      '<button type="button" class="btn btn-ghost btn-sm dutch-remove" aria-label="Remove">' +
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>';
+    container.appendChild(row);
+    row.querySelector('.dutch-remove').addEventListener('click', function() { row.remove(); count--; calc(); });
+    row.querySelector('.dutch-odds').addEventListener('input', calc);
+  }
+
+  function calc() {
+    var totalStake = parseFloat(stakeIn.value) || 0;
+    var inputs = container.querySelectorAll('.dutch-odds');
+    var sumInv = 0; var valid = true;
+    inputs.forEach(function(inp) {
+      var v = parseFloat(inp.value);
+      if (!v || v <= 1) { valid = false; return; }
+      sumInv += 1 / v;
+    });
+    if (!valid || totalStake <= 0 || sumInv === 0) { resultEl.innerHTML = '<p class="text-muted">Enter odds and stake</p>'; return; }
+    var html = ''; var ret = totalStake / sumInv;
+    inputs.forEach(function(inp, i) {
+      var v = parseFloat(inp.value);
+      var indStake = (totalStake * (1/v)) / sumInv;
+      html += '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--divider);font-size:14px">' +
+        '<span>Selection ' + (i+1) + ' (@ ' + v.toFixed(2) + ')</span>' +
+        '<span class="font-mono"><strong>' + indStake.toFixed(2) + '</strong></span></div>';
+    });
+    html += '<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:15px;font-weight:600">' +
+      '<span>Return (any wins)</span><span class="text-accent font-mono">' + ret.toFixed(2) + '</span></div>';
+    html += '<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:14px;color:var(--text-muted)">' +
+      '<span>Profit</span><span class="font-mono">' + (ret - totalStake).toFixed(2) + '</span></div>';
+    resultEl.innerHTML = html;
+  }
+
+  if (addBtn) addBtn.addEventListener('click', addSelection);
+  stakeIn.addEventListener('input', calc);
+  container.querySelectorAll('.dutch-odds').forEach(function(inp) { inp.addEventListener('input', calc); });
+}
+
+// --- Each-Way Calculator ---
+function initEachWayCalc() {
+  var stakeIn = document.getElementById('ew-stake');
+  var oddsIn = document.getElementById('ew-odds');
+  var placeIn = document.getElementById('ew-place-fraction');
+  var finishIn = document.getElementById('ew-finish');
+  var resultEl = document.getElementById('ew-result');
+  if (!stakeIn || !oddsIn) return;
+
+  function calc() {
+    var stake = parseFloat(stakeIn.value) || 0;
+    var odds = parseFloat(oddsIn.value) || 0;
+    var placeFrac = eval(placeIn.value) || 0.25;
+    var finish = finishIn.value;
+    if (stake <= 0 || odds <= 1) { resultEl.innerHTML = '<p class="text-muted">Enter stake and odds</p>'; return; }
+    var totalStake = stake * 2;
+    var placeOdds = 1 + ((odds - 1) * placeFrac);
+    var winReturn = 0, placeReturn = 0;
+    if (finish === 'win') { winReturn = stake * odds; placeReturn = stake * placeOdds; }
+    else if (finish === 'place') { winReturn = 0; placeReturn = stake * placeOdds; }
+    else { winReturn = 0; placeReturn = 0; }
+    var totalReturn = winReturn + placeReturn;
+    var profit = totalReturn - totalStake;
+    resultEl.innerHTML =
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">' +
+      '<div><div class="text-xs text-muted">Total Stake</div><div class="font-mono" style="font-size:18px;font-weight:600">' + totalStake.toFixed(2) + '</div></div>' +
+      '<div><div class="text-xs text-muted">Place Odds</div><div class="font-mono" style="font-size:18px;font-weight:600">' + placeOdds.toFixed(2) + '</div></div>' +
+      '<div><div class="text-xs text-muted">Win Return</div><div class="font-mono" style="font-size:18px;font-weight:600">' + winReturn.toFixed(2) + '</div></div>' +
+      '<div><div class="text-xs text-muted">Place Return</div><div class="font-mono" style="font-size:18px;font-weight:600">' + placeReturn.toFixed(2) + '</div></div>' +
+      '</div>' +
+      '<div class="calc-result mt-16"><div class="calc-result-label">Total Return</div><div class="calc-result-value">' + totalReturn.toFixed(2) + '</div></div>' +
+      '<div style="text-align:center;margin-top:8px;font-size:14px;color:' + (profit >= 0 ? 'var(--win)' : 'var(--loss)') + ';font-weight:600">' +
+      'Profit: ' + (profit >= 0 ? '+' : '') + profit.toFixed(2) + '</div>';
+  }
+
+  [stakeIn, oddsIn, placeIn, finishIn].forEach(function(el) {
+    if (el) el.addEventListener('input', calc);
+    if (el) el.addEventListener('change', calc);
+  });
+}
+
+// --- Lay Bet Calculator ---
+function initLayCalc() {
+  var backOdds = document.getElementById('lay-back-odds');
+  var layOdds = document.getElementById('lay-lay-odds');
+  var backStake = document.getElementById('lay-back-stake');
+  var commission = document.getElementById('lay-commission');
+  var resultEl = document.getElementById('lay-result');
+  if (!backOdds) return;
+
+  function calc() {
+    var bo = parseFloat(backOdds.value) || 0;
+    var lo = parseFloat(layOdds.value) || 0;
+    var bs = parseFloat(backStake.value) || 0;
+    var comm = parseFloat(commission.value) || 0;
+    if (bo <= 1 || lo <= 1 || bs <= 0) { resultEl.innerHTML = '<p class="text-muted">Enter all values</p>'; return; }
+    var layStake = (bs * bo) / (lo - (comm / 100));
+    var liability = layStake * (lo - 1);
+    var profitBack = (bs * (bo - 1)) - liability;
+    var profitLay = layStake * (1 - comm / 100) - bs;
+    resultEl.innerHTML =
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">' +
+      '<div><div class="text-xs text-muted">Lay Stake</div><div class="font-mono" style="font-size:20px;font-weight:700;color:var(--accent)">' + layStake.toFixed(2) + '</div></div>' +
+      '<div><div class="text-xs text-muted">Liability</div><div class="font-mono" style="font-size:20px;font-weight:700;color:var(--loss)">' + liability.toFixed(2) + '</div></div>' +
+      '</div>';
+  }
+  [backOdds, layOdds, backStake, commission].forEach(function(el) { if (el) el.addEventListener('input', calc); });
+}
+
+// --- Bet Returns Calculator (single/double/treble/acca) ---
+function initBetReturnsCalc() {
+  var typeIn = document.getElementById('ret-type');
+  var stakeIn = document.getElementById('ret-stake');
+  var ewCheck = document.getElementById('ret-ew');
+  var container = document.getElementById('ret-selections');
+  var resultEl = document.getElementById('ret-result');
+  if (!typeIn || !stakeIn) return;
+
+  function getRequiredLegs() {
+    var t = typeIn.value;
+    if (t === 'single') return 1;
+    if (t === 'double') return 2;
+    if (t === 'treble') return 3;
+    if (t === 'trixie') return 3;
+    if (t === 'patent') return 3;
+    if (t === 'yankee') return 4;
+    if (t === 'lucky15') return 4;
+    if (t === 'lucky31') return 5;
+    if (t === 'lucky63') return 6;
+    if (t === 'heinz') return 6;
+    return parseInt(t) || 4;
+  }
+
+  function updateSelections() {
+    var needed = getRequiredLegs();
+    var current = container.querySelectorAll('.ret-sel-row').length;
+    while (current < needed) {
+      current++;
+      var row = document.createElement('div');
+      row.className = 'calc-row ret-sel-row';
+      row.innerHTML = '<span class="calc-label">Sel. ' + current + '</span>' +
+        '<input type="number" step="0.01" min="1.01" placeholder="Odds" class="calc-input ret-odds">' +
+        '<select class="calc-input" style="max-width:90px"><option value="win">Won</option><option value="lose">Lost</option><option value="void">Void</option></select>';
+      container.appendChild(row);
+      row.querySelectorAll('input,select').forEach(function(el) { el.addEventListener('input', calc); el.addEventListener('change', calc); });
+    }
+    while (current > needed) {
+      container.removeChild(container.lastElementChild);
+      current--;
+    }
+  }
+
+  function calc() {
+    var stake = parseFloat(stakeIn.value) || 0;
+    var rows = container.querySelectorAll('.ret-sel-row');
+    var sels = [];
+    rows.forEach(function(r) {
+      var odds = parseFloat(r.querySelector('.ret-odds').value) || 0;
+      var status = r.querySelector('select').value;
+      sels.push({ odds: odds, status: status });
+    });
+    // Simple accumulator calculation
+    var type = typeIn.value;
+    var totalOdds = 1; var allWin = true;
+    sels.forEach(function(s) {
+      if (s.status === 'win' && s.odds > 1) totalOdds *= s.odds;
+      else if (s.status === 'void') totalOdds *= 1;
+      else allWin = false;
+    });
+    var returns = allWin ? stake * totalOdds : 0;
+    var profit = returns - stake;
+    resultEl.innerHTML =
+      '<div class="calc-result"><div class="calc-result-label">Returns</div><div class="calc-result-value">' + returns.toFixed(2) + '</div></div>' +
+      '<div style="text-align:center;margin-top:8px;font-size:14px;color:' + (profit >= 0 ? 'var(--win)' : 'var(--loss)') + ';font-weight:600">' +
+      'Profit: ' + (profit >= 0 ? '+' : '') + profit.toFixed(2) + '</div>';
+  }
+
+  typeIn.addEventListener('change', function() { updateSelections(); calc(); });
+  stakeIn.addEventListener('input', calc);
+  updateSelections();
+}
+
+// --- Sure Bet / Arbitrage Calculator ---
+function initArbCalc() {
+  var stakeIn = document.getElementById('arb-stake');
+  var odds1 = document.getElementById('arb-odds-1');
+  var odds2 = document.getElementById('arb-odds-2');
+  var odds3 = document.getElementById('arb-odds-3');
+  var resultEl = document.getElementById('arb-result');
+  if (!stakeIn || !odds1) return;
+
+  function calc() {
+    var totalStake = parseFloat(stakeIn.value) || 0;
+    var o1 = parseFloat(odds1.value) || 0;
+    var o2 = parseFloat(odds2.value) || 0;
+    var o3 = odds3 ? parseFloat(odds3.value) || 0 : 0;
+    if (totalStake <= 0 || o1 <= 1 || o2 <= 1) { resultEl.innerHTML = '<p class="text-muted">Enter stake and odds</p>'; return; }
+    var sumInv = (1/o1) + (1/o2);
+    if (o3 > 1) sumInv += (1/o3);
+    var isArb = sumInv < 1;
+    var margin = ((1 - sumInv) * 100).toFixed(2);
+    var s1 = totalStake * (1/o1) / sumInv;
+    var s2 = totalStake * (1/o2) / sumInv;
+    var s3 = o3 > 1 ? totalStake * (1/o3) / sumInv : 0;
+    var ret = totalStake / sumInv;
+    var profit = ret - totalStake;
+    resultEl.innerHTML =
+      '<div class="badge ' + (isArb ? 'badge-win' : 'badge-loss') + '" style="margin-bottom:12px">' + (isArb ? 'Arbitrage Found: ' + margin + '% profit' : 'No Arbitrage: ' + margin + '% margin') + '</div>' +
+      '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--divider)"><span>Stake on Outcome 1 (@ ' + o1.toFixed(2) + ')</span><span class="font-mono"><strong>' + s1.toFixed(2) + '</strong></span></div>' +
+      '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--divider)"><span>Stake on Outcome 2 (@ ' + o2.toFixed(2) + ')</span><span class="font-mono"><strong>' + s2.toFixed(2) + '</strong></span></div>' +
+      (o3 > 1 ? '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--divider)"><span>Stake on Draw (@ ' + o3.toFixed(2) + ')</span><span class="font-mono"><strong>' + s3.toFixed(2) + '</strong></span></div>' : '') +
+      '<div style="display:flex;justify-content:space-between;padding:8px 0;font-weight:600"><span>Guaranteed Return</span><span class="text-accent font-mono">' + ret.toFixed(2) + '</span></div>' +
+      '<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:14px;color:' + (profit >= 0 ? 'var(--win)' : 'var(--loss)') + '"><span>Profit</span><span class="font-mono">' + (profit >= 0 ? '+' : '') + profit.toFixed(2) + '</span></div>';
+  }
+  [stakeIn, odds1, odds2].forEach(function(el) { if (el) el.addEventListener('input', calc); });
+  if (odds3) odds3.addEventListener('input', calc);
+}
+
+// ============================================================
+// ACCA BUILDER (enhanced with pre-fills)
+// ============================================================
+function initAccaBuilder() {
+  var slip = document.getElementById('builder-slip');
+  var emptyState = document.getElementById('builder-empty');
+  var totalOdds = document.getElementById('builder-total-odds');
+  var totalReturn = document.getElementById('builder-total-return');
+  var selectionCount = document.getElementById('builder-count');
+  var stakeInput = document.getElementById('builder-stake');
+  if (!slip) return;
+
+  var selections = [];
+
+  document.querySelectorAll('.match-odds button').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var row = this.closest('.match-row, .builder-match-row');
+      var matchId = row.dataset.matchId;
+      var teams = row.querySelector('.match-teams').textContent.trim();
+      var pick = this.dataset.pick;
+      var odds = parseFloat(this.dataset.odds);
+      selections = selections.filter(function(s) { return s.matchId !== matchId; });
+      row.querySelectorAll('.match-odds button').forEach(function(b) { b.classList.remove('selected'); });
+      this.classList.add('selected');
+      selections.push({ matchId: matchId, teams: teams, pick: pick, odds: odds });
+      updateSlip();
+    });
+  });
+
+  // Pre-fill picks
+  document.querySelectorAll('.prefill-pick').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var data = JSON.parse(this.dataset.picks);
+      selections = [];
+      document.querySelectorAll('.match-odds button').forEach(function(b) { b.classList.remove('selected'); });
+      data.forEach(function(pick) {
+        selections.push(pick);
+        var row = document.querySelector('[data-match-id="' + pick.matchId + '"]');
+        if (row) {
+          row.querySelectorAll('.match-odds button').forEach(function(b) {
+            if (b.dataset.pick === pick.pick) b.classList.add('selected');
+          });
+        }
+      });
+      updateSlip();
+    });
+  });
+
+  function updateSlip() {
+    if (selections.length === 0) {
+      if (emptyState) emptyState.style.display = '';
+      slip.innerHTML = '';
+      if (emptyState) slip.appendChild(emptyState);
+      selectionCount.textContent = '0';
+      totalOdds.textContent = '-';
+      totalReturn.textContent = '0.00';
+      return;
+    }
+    if (emptyState) emptyState.style.display = 'none';
+    var html = '';
+    var combined = 1;
+    selections.forEach(function(sel, i) {
+      combined *= sel.odds;
+      html += '<div class="tip-card-match" style="gap:8px">' +
+        '<span class="tip-card-match-teams" style="flex:1;font-size:13px">' + sel.teams + '</span>' +
+        '<span class="tip-card-match-pick">' + sel.pick + '</span>' +
+        '<span class="tip-card-match-odds" data-odds-dec="' + sel.odds + '">' + OddsUtil.formatOdds(sel.odds, currentOddsFormat) + '</span>' +
+        '<button class="btn btn-ghost btn-sm" onclick="removeSelection(' + i + ')" style="padding:4px" aria-label="Remove">' +
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>';
+    });
+    slip.innerHTML = html;
+    selectionCount.textContent = selections.length;
+    totalOdds.textContent = combined.toFixed(2);
+    var stake = parseFloat(stakeInput.value) || 10;
+    totalReturn.textContent = (stake * combined).toFixed(2);
+  }
+
+  window.removeSelection = function(i) {
+    var removed = selections[i];
+    selections.splice(i, 1);
+    var row = document.querySelector('[data-match-id="' + removed.matchId + '"]');
+    if (row) row.querySelectorAll('.match-odds button').forEach(function(b) { b.classList.remove('selected'); });
+    updateSlip();
+  };
+
+  if (stakeInput) stakeInput.addEventListener('input', updateSlip);
+}
+
+// --- Glossary Search ---
+function initGlossarySearch() {
+  var input = document.getElementById('glossary-search');
+  if (!input) return;
+  input.addEventListener('input', function() {
+    var q = this.value.toLowerCase();
+    document.querySelectorAll('.glossary-term').forEach(function(term) {
+      var name = term.querySelector('dt').textContent.toLowerCase();
+      var def = term.querySelector('dd').textContent.toLowerCase();
+      term.style.display = (name.includes(q) || def.includes(q)) ? '' : 'none';
+    });
+    // Show/hide letter headings
+    document.querySelectorAll('.glossary-letter').forEach(function(letter) {
+      var next = letter.nextElementSibling;
+      var hasVisible = false;
+      while (next && !next.classList.contains('glossary-letter')) {
+        if (next.style.display !== 'none') hasVisible = true;
+        next = next.nextElementSibling;
+      }
+      letter.style.display = hasVisible ? '' : 'none';
+    });
+  });
+}
+
+// --- Back to Top Button ---
+function initBackToTop() {
+  var btn = document.querySelector('.back-to-top');
+  if (!btn) {
+    btn = document.createElement('button');
+    btn.className = 'back-to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>';
+    document.body.appendChild(btn);
+  }
+  window.addEventListener('scroll', function() {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+  btn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// --- Smooth scroll for anchor links ---
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+}
+
+// --- Glossary letter nav active state ---
+function initGlossaryNav() {
+  var letters = document.querySelectorAll('.glossary-letter');
+  if (!letters.length) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var id = entry.target.id;
+        document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-100px 0px -80% 0px' });
+  letters.forEach(function(l) { observer.observe(l); });
+}
+
+// --- Initialize All ---
+document.addEventListener('DOMContentLoaded', function() {
+  initAccaCalc();
+  initOddsConverter();
+  initMarginCalc();
+  initDutchingCalc();
+  initEachWayCalc();
+  initLayCalc();
+  initBetReturnsCalc();
+  initArbCalc();
+  initAccaBuilder();
+  initGlossarySearch();
+  initBackToTop();
+  initSmoothScroll();
+  initGlossaryNav();
+});
