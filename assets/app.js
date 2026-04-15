@@ -99,6 +99,24 @@ function setOddsFormat(fmt) {
       ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>'
       : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
   });
+
+  // Mobile nav accordion groups
+  document.querySelectorAll('.mobile-nav-group-toggle').forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+      var links = this.nextElementSibling;
+      var isOpen = links.classList.contains('open');
+      // Close all other groups
+      document.querySelectorAll('.mobile-nav-group-links.open').forEach(function(g) {
+        g.classList.remove('open');
+        g.previousElementSibling.setAttribute('aria-expanded', 'false');
+      });
+      // Toggle current
+      if (!isOpen) {
+        links.classList.add('open');
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
 })();
 
 // --- FAQ Accordion ---
@@ -839,7 +857,7 @@ function initBetOfDay() {
   }
 
   el.innerHTML = '<div class="bet-of-day-inner">' +
-    '<div class="bet-of-day-badge"><span class="live-badge">&#9679; Today's Best Bet</span></div>' +
+    '<div class="bet-of-day-badge"><span class="live-badge">&#9679; Today\u2019s Best Bet</span></div>' +
     '<div class="bet-of-day-match" data-i18n="botd_match">' + bet.match + '</div>' +
     '<div class="bet-of-day-row">' +
     '<span class="badge">' + bet.market + '</span>' +
