@@ -2853,3 +2853,441 @@ input, select, textarea { font: inherit; color: inherit; }
   .tracker-btn { bottom: 76px; }
   .tracker-panel { bottom: 124px; }
 }
+
+
+/* ============================================================
+   GLOSSARY STYLES
+   ============================================================ */
+.glossary-alpha-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface-2);
+  border-radius: 8px;
+}
+.glossary-alpha-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.glossary-alpha-nav a:hover,
+.glossary-alpha-nav a.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.glossary-letter-group { margin-bottom: 2.5rem; }
+.glossary-letter-heading {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.glossary-term-card {
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: box-shadow 0.15s;
+}
+.glossary-term-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.glossary-term-card dt {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+.glossary-term-card dd {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   ACCA BUILDER IMPROVEMENTS
+   ============================================================ */
+.acca-matches-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+.acca-match-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color 0.15s;
+}
+.acca-match-card:hover {
+  border-color: var(--accent);
+}
+.acca-match-teams {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+.acca-match-odds {
+  display: flex;
+  gap: 6px;
+}
+.acca-odd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.acca-odd-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light, #EEF2FF);
+}
+.acca-odd-btn.selected {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.acca-slip {
+  position: sticky;
+  top: 72px;
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+.acca-slip-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.acca-slip-header h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.acca-slip-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.acca-slip-selections { list-style: none; padding: 0; margin: 0 0 1rem; }
+.acca-slip-selections li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+.acca-slip-selections li:last-child { border-bottom: none; }
+.acca-slip-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-top: 2px solid var(--border);
+  font-weight: 700;
+  font-size: 1rem;
+}
+.acca-slip-return {
+  color: var(--accent);
+  font-size: 1.25rem;
+}
+
+/* ============================================================
+   BOOKMAKERS COMPARISON TABLE (above reviews)
+   ============================================================ */
+.bookie-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  font-size: 0.9375rem;
+}
+.bookie-comparison-table thead th {
+  background: var(--surface-2);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary);
+  border-bottom: 2px solid var(--border);
+}
+.bookie-comparison-table td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.bookie-comparison-table tr:hover td {
+  background: var(--accent-light, #EEF2FF);
+}
+.bookie-comparison-table .bookie-name {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.bookie-comparison-table .bookie-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+}
+.bookie-comparison-table .bookie-cta {
+  display: inline-block;
+  padding: 6px 16px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.bookie-comparison-table .bookie-cta:hover {
+  background: var(--accent-hover, #1233A0);
+}
+
+/* ============================================================
+   MY ACCAS FAB — better positioning, no content overlap
+   ============================================================ */
+.tracker-btn {
+  z-index: 1000;
+}
+
+/* ============================================================
+   IMPROVED SIDEBAR STYLING FOR TIP PAGES
+   ============================================================ */
+.tip-sidebar-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+.tip-sidebar-box h4 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary);
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.tip-sidebar-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.tip-sidebar-box li {
+  padding: 0.375rem 0;
+}
+.tip-sidebar-box li a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  transition: color 0.15s;
+}
+.tip-sidebar-box li a:hover {
+  color: var(--accent);
+}
+
+/* ============================================================
+   BETTER EMPTY STATE FOR ACCA SLIP
+   ============================================================ */
+.acca-empty-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-muted);
+}
+.acca-empty-state svg {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.75rem;
+  opacity: 0.4;
+}
+.acca-empty-state p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* ============================================================
+   RESPONSIVE IMPROVEMENTS
+   ============================================================ */
+@media (max-width: 768px) {
+  .bookie-comparison-table { font-size: 0.8125rem; }
+  .bookie-comparison-table td,
+  .bookie-comparison-table th { padding: 0.625rem 0.5rem; }
+  .glossary-alpha-nav a { width: 32px; height: 32px; font-size: 0.75rem; }
+  .acca-slip { position: static; margin-top: 1.5rem; }
+}
+
+/* ============================================================
+   DARK MODE ADDITIONS
+   ============================================================ */
+[data-theme="dark"] .glossary-alpha-nav { background: var(--surface); }
+[data-theme="dark"] .glossary-term-card { background: var(--surface-2, #1a1a2e); }
+[data-theme="dark"] .acca-match-card { background: var(--surface-2, #1a1a2e); }
+[data-theme="dark"] .acca-odd-btn:hover { background: rgba(22, 65, 180, 0.15); }
+[data-theme="dark"] .bookie-comparison-table tr:hover td { background: rgba(22, 65, 180, 0.08); }
+[data-theme="dark"] .tip-sidebar-box { background: var(--surface-2, #1a1a2e); }
+
+/* ============================================================
+   GLOSSARY — Letter Nav, Terms, Search
+   ============================================================ */
+.letter-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--surface-2);
+  border-radius: 10px;
+}
+.letter-nav-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.letter-nav-item:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.glossary-letter {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.5rem;
+  margin: 2rem 0 1rem;
+}
+.glossary-letter:first-child { margin-top: 0; }
+
+.glossary-term {
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.625rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: box-shadow 0.15s;
+}
+.glossary-term:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.glossary-term dl { margin: 0; }
+.glossary-term dt {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+.glossary-term dd {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+.glossary-term dd a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.glossary-content {
+  margin-top: 1.5rem;
+}
+
+/* Search input */
+.search-wrapper { position: relative; max-width: 400px; }
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+  transition: border-color 0.15s;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(22, 65, 180, 0.1);
+}
+.search-wrapper::before {
+  content: '';
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23888'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E") no-repeat center;
+  background-size: contain;
+  pointer-events: none;
+}
+
+/* mt utility */
+.mt-16 { margin-top: 1rem; }
+.mt-24 { margin-top: 1.5rem; }
+
+/* Dark mode glossary */
+[data-theme="dark"] .glossary-term { background: var(--surface-2, #1a1a2e); border-color: var(--border); }
+[data-theme="dark"] .letter-nav { background: var(--surface); }
+[data-theme="dark"] .search-input { background: var(--surface-2, #1a1a2e); border-color: var(--border); color: var(--text-primary); }
+
+/* Responsive glossary */
+@media (max-width: 768px) {
+  .letter-nav-item { width: 30px; height: 30px; font-size: 0.75rem; }
+  .glossary-term { padding: 0.75rem 1rem; }
+  .glossary-term dt { font-size: 0.9375rem; }
+  .glossary-term dd { font-size: 0.875rem; }
+}
