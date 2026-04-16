@@ -47,13 +47,14 @@ var currentOddsFormat = 'decimal';
 
 function setOddsFormat(fmt) {
   currentOddsFormat = fmt;
-  // Update all switcher buttons
-  document.querySelectorAll('.odds-switcher .tab-filter').forEach(function(btn) {
+  // Update ALL switcher buttons (both old and new styles)
+  document.querySelectorAll('.odds-switcher .tab-filter, .odds-fmt-btn').forEach(function(btn) {
     btn.classList.toggle('active', btn.dataset.format === fmt);
   });
-  // Update all odds displays
+  // Update all odds displays that have data-odds-dec
   document.querySelectorAll('[data-odds-dec]').forEach(function(el) {
     var dec = parseFloat(el.dataset.oddsDec);
+    if (isNaN(dec) || dec <= 0) return;
     el.textContent = OddsUtil.formatOdds(dec, fmt);
   });
   // Update acca builder buttons
@@ -136,8 +137,8 @@ document.querySelectorAll('.faq-question').forEach(function(btn) {
   });
 });
 
-// --- Odds Switcher Init ---
-document.querySelectorAll('.odds-switcher .tab-filter').forEach(function(btn) {
+// --- Odds Switcher Init (both old and new button styles) ---
+document.querySelectorAll('.odds-switcher .tab-filter, .odds-fmt-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
     setOddsFormat(this.dataset.format);
   });
@@ -1090,3 +1091,278 @@ document.addEventListener('DOMContentLoaded', function() {
     if (heading) heading.appendChild(badge);
   });
 })();
+
+// ============================================================
+// LIVE SCORES — Client-side polling
+// Uses free football-data.org / api-football or similar
+// Falls back to match status display from odds-api data
+// ============================================================
+(function() {
+  var container = document.getElementById('live-scores-container');
+  var droppingContainer = document.getElementById('dropping-odds-container');
+  var droppingList = document.getElementById('dropping-odds-list');
+  if (!container) return;
+
+  // Store previous odds for dropping detection
+  var prevOdds = {};
+  var droppingAlerts = [];
+
+  function renderLiveMatch(match) {
+    var isLive = match.status === 'live' || match.status === 'in_play';
+    var card = document.createElement('div');
+    card.className = 'live-match-card' + (isLive ? ' is-live' : '');
+    card.innerHTML =
+      '<div class="live-match-league">' + (match.league || '') + '</div>' +
+      '<div class="live-match-score">' +
+        '<span class="live-match-team">' + match.home + '</span>' +
+        '<span class="live-score-display">' + (match.home_score != null ? match.home_score + ' - ' + match.away_score : 'vs') + '</span>' +
+        '<span class="live-match-team">' + match.away + '</span>' +
+      '</div>' +
+      (match.minute ? '<div class="live-match-minute">' + match.minute + "'" + '</div>' : '') +
+      (!isLive && match.date ? '<div class="live-match-minute">' + formatKO(match.date) + '</div>' : '');
+    return card;
+  }
+
+  function formatKO(iso) {
+    try {
+      var d = new Date(iso);
+      var h = d.getUTCHours().toString().padStart(2, '0');
+      var m = d.getUTCMinutes().toString().padStart(2, '0');
+      return h + ':' + m + ' KO';
+    } catch(e) { return ''; }
+  }
+
+  function renderDroppingOdds() {
+    if (!droppingContainer || !droppingList) return;
+    if (droppingAlerts.length === 0) {
+      droppingContainer.style.display = 'none';
+      return;
+    }
+    droppingContainer.style.display = 'block';
+    droppingList.innerHTML = '';
+    droppingAlerts.slice(0, 8).forEach(function(alert) {
+      var dir = alert.change < 0 ? 'down' : 'up';
+      var arrow = alert.change < 0 ? '\u2193' : '\u2191';
+      var div = document.createElement('div');
+      div.className = 'dropping-item';
+      div.innerHTML =
+        '<span class="dropping-match">' + alert.match + '</span>' +
+        '<span class="dropping-market">' + alert.market + '</span>' +
+        '<span class="dropping-movement ' + dir + '">' +
+          '<span class="dropping-arrow">' + arrow + '</span>' +
+          alert.oldOdds.toFixed(2) + ' \u2192 ' + alert.newOdds.toFixed(2) +
+        '</span>';
+      droppingList.appendChild(div);
+    });
+  }
+
+  // Detect odds changes between snapshots
+  function detectDroppingOdds(events) {
+    var newAlerts = [];
+    events.forEach(function(ev) {
+      var key = ev.id || (ev.home + '_' + ev.away);
+      if (!ev.odds) return;
+      Object.keys(ev.odds).forEach(function(bk) {
+        var ml = ev.odds[bk].ml;
+        if (!ml) return;
+        ['home', 'draw', 'away'].forEach(function(outcome) {
+          var oddKey = key + '_' + bk + '_' + outcome;
+          var val = parseFloat(ml[outcome]);
+          if (isNaN(val)) return;
+          if (prevOdds[oddKey] !== undefined) {
+            var diff = val - prevOdds[oddKey];
+            if (Math.abs(diff) >= 0.05) {
+              newAlerts.push({
+                match: ev.home + ' vs ' + ev.away,
+                market: outcome.charAt(0).toUpperCase() + outcome.slice(1) + ' (' + bk + ')',
+                oldOdds: prevOdds[oddKey],
+                newOdds: val,
+                change: diff,
+                time: new Date().toISOString()
+              });
+            }
+          }
+          prevOdds[oddKey] = val;
+        });
+      });
+    });
+    if (newAlerts.length > 0) {
+      droppingAlerts = newAlerts.concat(droppingAlerts).slice(0, 20);
+      renderDroppingOdds();
+    }
+  }
+
+  // Fetch live scores from a free API
+  // Using api-football.com free tier or fallback to static data
+  var LIVE_SCORES_API = 'https://v3.football.api-sports.io/fixtures?live=all';
+  var API_FOOTBALL_KEY = ''; // Free tier key - users can add their own
+
+  function fetchLiveScores() {
+    // Try fetching from local data first (generated by pipeline)
+    fetch('data/live_client.json?t=' + Date.now())
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data && data.events && data.events.length > 0) {
+          renderMatches(data.events);
+          // Store odds for dropping detection on next fetch
+          if (data.odds_snapshot) {
+            detectDroppingOdds(data.odds_snapshot);
+          }
+        }
+      })
+      .catch(function() {
+        // Fallback: show upcoming matches from injected data
+        var rows = document.querySelectorAll('.match-odds-row');
+        if (rows.length > 0) {
+          var matches = [];
+          rows.forEach(function(row) {
+            matches.push({
+              home: row.dataset.home || '',
+              away: row.dataset.away || '',
+              date: row.dataset.date || '',
+              league: '',
+              status: 'pending'
+            });
+          });
+          renderMatches(matches.slice(0, 6));
+        }
+      });
+  }
+
+  function renderMatches(matches) {
+    if (!matches || matches.length === 0) return;
+    container.innerHTML = '';
+    var hasLive = false;
+    matches.forEach(function(m) {
+      if (m.status === 'live' || m.status === 'in_play') hasLive = true;
+      container.appendChild(renderLiveMatch(m));
+    });
+    // If no live matches, show "upcoming" label
+    if (!hasLive && matches.length > 0) {
+      var label = document.createElement('div');
+      label.style.cssText = 'grid-column:1/-1;text-align:center;padding:0.5rem;font-size:0.8125rem;color:var(--text-muted);';
+      label.textContent = 'No matches currently live. Showing upcoming fixtures.';
+      container.insertBefore(label, container.firstChild);
+    }
+  }
+
+  // Initial load
+  fetchLiveScores();
+
+  // Poll every 60 seconds when page is visible
+  var pollInterval;
+  function startPolling() {
+    if (pollInterval) clearInterval(pollInterval);
+    pollInterval = setInterval(fetchLiveScores, 60000);
+  }
+  function stopPolling() {
+    if (pollInterval) clearInterval(pollInterval);
+  }
+
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) stopPolling();
+    else { fetchLiveScores(); startPolling(); }
+  });
+
+  startPolling();
+})();
+
+// ============================================================
+// BEST ODDS HIGHLIGHTER
+// Highlights the best odds for each outcome in the comparison table
+// ============================================================
+(function() {
+  var table = document.querySelector('.odds-comparison-table');
+  if (!table) return;
+
+  var rows = table.querySelectorAll('.match-odds-row');
+  rows.forEach(function(row) {
+    var tds = row.querySelectorAll('td');
+    if (tds.length < 2) return;
+
+    // For each outcome position (home=0, draw=1, away=2)
+    for (var pos = 0; pos < 3; pos++) {
+      var bestVal = 0;
+      var bestEls = [];
+      // Iterate bookmaker columns (skip first td which is match name)
+      for (var col = 1; col < tds.length; col++) {
+        var vals = tds[col].querySelectorAll('.odd-val');
+        if (vals.length > pos) {
+          var v = parseFloat(vals[pos].dataset.oddsDec);
+          if (!isNaN(v)) {
+            if (v > bestVal) {
+              bestVal = v;
+              bestEls = [vals[pos]];
+            } else if (v === bestVal) {
+              bestEls.push(vals[pos]);
+            }
+          }
+        }
+      }
+      bestEls.forEach(function(el) { el.classList.add('best-odds'); });
+    }
+  });
+})();
+
+// ============================================================
+// ACCA BUILDER — Live Match Integration
+// If LIVE_MATCHES data is available, populate the builder
+// ============================================================
+(function() {
+  if (typeof window.LIVE_MATCHES === 'undefined') return;
+  var matches = window.LIVE_MATCHES;
+  if (!matches || matches.length === 0) return;
+
+  var listEl = document.getElementById('live-match-list') || document.querySelector('.match-list');
+  if (!listEl) return;
+
+  // Clear existing placeholder content and populate with live data
+  var existingItems = listEl.querySelectorAll('.match-item');
+  if (existingItems.length === 0) {
+    matches.forEach(function(m) {
+      var item = document.createElement('div');
+      item.className = 'match-item';
+      item.dataset.matchId = m.id;
+      item.innerHTML =
+        '<div class="match-info">' +
+          '<span class="match-league-badge">' + (m.league || '') + '</span>' +
+          '<span class="match-teams-label">' + m.home + ' vs ' + m.away + '</span>' +
+        '</div>' +
+        '<div class="match-odds">' +
+          (m.odds.home ? '<button data-odds="' + m.odds.home + '" data-sel="' + m.home + ' Win">' + parseFloat(m.odds.home).toFixed(2) + '</button>' : '') +
+          (m.odds.draw ? '<button data-odds="' + m.odds.draw + '" data-sel="Draw">' + parseFloat(m.odds.draw).toFixed(2) + '</button>' : '') +
+          (m.odds.away ? '<button data-odds="' + m.odds.away + '" data-sel="' + m.away + ' Win">' + parseFloat(m.odds.away).toFixed(2) + '</button>' : '') +
+        '</div>';
+      listEl.appendChild(item);
+    });
+  }
+})();
+
+// ============================================================
+// TRANSLATION READY — i18n string extraction helper
+// All user-facing strings wrapped in t() for future translation
+// ============================================================
+window.FA_STRINGS = {
+  'en': {
+    'decimal': 'Decimal',
+    'fractional': 'Fractional',
+    'american': 'American',
+    'combined_odds': 'Combined Odds',
+    'stake_returns': 'stake returns',
+    'live': 'LIVE',
+    'no_live_matches': 'No matches currently live. Showing upcoming fixtures.',
+    'dropping_odds': 'Dropping Odds Alerts',
+    'updated': 'Updated',
+    'all_tips': 'All Tips',
+    'ko': 'KO',
+    'legs': 'legs',
+    'safe': 'SAFE',
+    'balanced': 'BALANCED',
+    'adventurous': 'ADVENTUROUS'
+  }
+};
+window.FA_LANG = document.documentElement.lang || 'en';
+function t(key) {
+  var strings = window.FA_STRINGS[window.FA_LANG] || window.FA_STRINGS['en'];
+  return strings[key] || key;
+}

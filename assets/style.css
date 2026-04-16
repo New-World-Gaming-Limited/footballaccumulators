@@ -3291,3 +3291,139 @@ input, select, textarea { font: inherit; color: inherit; }
   .glossary-term dt { font-size: 0.9375rem; }
   .glossary-term dd { font-size: 0.875rem; }
 }
+
+/* ============================================================
+   LIVE TIP CARDS
+   ============================================================ */
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+.tip-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
+.tip-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.tip-card-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); }
+.tip-card-title { display: flex; align-items: center; gap: 0.5rem; }
+.tip-card-title svg { color: var(--accent); flex-shrink: 0; }
+.tip-card-header h3 { margin: 0; font-size: 1rem; font-weight: 700; }
+.tip-card-badges { display: flex; align-items: center; gap: 0.5rem; }
+.tip-legs-count { font-size: 0.8125rem; color: var(--text-muted); font-weight: 600; }
+.conf-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; }
+.conf-high { background: #dcfce7; color: #166534; }
+.conf-mid { background: #fef9c3; color: #854d0e; }
+.conf-low { background: #fee2e2; color: #991b1b; }
+[data-theme="dark"] .conf-high { background: rgba(22,163,74,0.15); color: #4ade80; }
+[data-theme="dark"] .conf-mid { background: rgba(202,138,4,0.15); color: #facc15; }
+[data-theme="dark"] .conf-low { background: rgba(239,68,68,0.15); color: #f87171; }
+
+.tip-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.tip-table th { padding: 0.5rem 0.75rem; text-align: left; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); background: var(--surface-2); }
+.tip-table td { padding: 0.625rem 0.75rem; border-bottom: 1px solid var(--border); }
+.tip-table tbody tr:last-child td { border-bottom: none; }
+.match-col { display: flex; flex-direction: column; gap: 2px; }
+.match-teams { font-weight: 500; }
+.match-ko { font-size: 0.75rem; color: var(--text-muted); }
+.league-badge { display: inline-block; padding: 2px 8px; background: var(--accent-light, #EEF2FF); color: var(--accent); border-radius: 4px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+.odds-cell { font-weight: 700; font-variant-numeric: tabular-nums; }
+.tip-bk-link { font-size: 0.75rem; color: var(--accent); text-decoration: none; margin-left: 4px; }
+.tip-card-footer { display: flex; justify-content: space-between; padding: 0.875rem 1.25rem; background: var(--surface-2); }
+.tip-card-footer .label { display: block; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 2px; }
+.tip-card-footer .value { font-size: 1.125rem; font-weight: 700; }
+.tip-card-footer .accent { color: var(--accent); }
+
+/* ODDS FORMAT SWITCHER */
+.odds-format-switcher { display: flex; gap: 4px; }
+.odds-fmt-btn { padding: 6px 14px; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); border-radius: 6px; font-size: 0.8125rem; font-weight: 600; cursor: pointer; transition: all 0.15s; }
+.odds-fmt-btn:hover { border-color: var(--accent); color: var(--accent); }
+.odds-fmt-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ODDS COMPARISON TABLE */
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.odds-comparison-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; min-width: 720px; }
+.odds-comparison-table th { padding: 0.75rem 0.5rem; text-align: center; font-weight: 600; font-size: 0.8125rem; background: var(--surface-2); border-bottom: 2px solid var(--border); white-space: nowrap; }
+.odds-comparison-table th:first-child { text-align: left; min-width: 240px; }
+.odds-comparison-table td { padding: 0.75rem 0.5rem; border-bottom: 1px solid var(--border); text-align: center; vertical-align: middle; }
+.odds-comparison-table td:first-child { text-align: left; }
+.match-name strong { font-size: 0.9375rem; }
+.match-meta { display: block; font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+.odds-trio { display: flex; gap: 4px; justify-content: center; }
+.odd-val { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; padding: 4px 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; font-size: 0.8125rem; font-weight: 600; font-variant-numeric: tabular-nums; text-align: center; transition: all 0.15s; cursor: pointer; }
+.odd-val:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light, #EEF2FF); }
+.odd-val.best-odds { border-color: #16a34a; color: #16a34a; font-weight: 700; }
+.no-odds { color: var(--text-muted); }
+.match-odds-row:hover td { background: var(--accent-light, #EEF2FF); }
+
+/* LIVE SCORES */
+.live-section { background: var(--surface-2); }
+.live-pulse { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background: #ef4444; color: #fff; border-radius: 10px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; animation: pulse-live 2s infinite; }
+@keyframes pulse-live { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+.live-scores-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.live-match-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; position: relative; overflow: hidden; }
+.live-match-card.is-live { border-left: 3px solid #ef4444; }
+.live-match-card.is-live::before { content: 'LIVE'; position: absolute; top: 8px; right: 8px; padding: 2px 8px; background: #ef4444; color: #fff; border-radius: 4px; font-size: 0.6875rem; font-weight: 700; }
+.live-match-league { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+.live-match-score { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.live-match-team { font-weight: 600; font-size: 0.9375rem; flex: 1; }
+.live-match-team:last-child { text-align: right; }
+.live-score-display { font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 60px; text-align: center; padding: 4px 8px; background: var(--surface-2); border-radius: 6px; }
+.live-match-minute { text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+.live-placeholder { text-align: center; padding: 2rem; color: var(--text-muted); grid-column: 1 / -1; }
+.live-placeholder svg { margin: 0 auto 0.5rem; display: block; opacity: 0.5; }
+.live-placeholder p { margin: 0; font-size: 0.875rem; }
+
+/* DROPPING ODDS */
+.dropping-odds-section { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.dropping-heading { font-size: 1rem; font-weight: 700; margin: 0 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.dropping-heading::before { content: ''; display: inline-block; width: 8px; height: 8px; background: #ef4444; border-radius: 50%; animation: pulse-live 1.5s infinite; }
+.dropping-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.dropping-item { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
+.dropping-match { flex: 1; font-weight: 600; font-size: 0.875rem; }
+.dropping-market { font-size: 0.8125rem; color: var(--text-secondary); }
+.dropping-movement { display: flex; align-items: center; gap: 0.25rem; font-size: 0.875rem; font-weight: 700; }
+.dropping-movement.down { color: #ef4444; }
+.dropping-movement.up { color: #16a34a; }
+.dropping-arrow { font-size: 1rem; }
+
+/* TIP MATCH CARDS (detail pages) */
+.tip-match-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-bottom: 0.75rem; transition: box-shadow 0.2s; }
+.tip-match-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.tip-match-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+.tip-match-type { font-size: 0.8125rem; font-weight: 600; color: var(--text-secondary); }
+.tip-match-ko { font-size: 0.8125rem; font-weight: 600; }
+.tip-match-teams { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.tip-match-meta { display: flex; justify-content: space-between; align-items: center; }
+.tip-match-odds { font-size: 1.25rem; font-weight: 700; color: var(--accent); }
+.tip-match-bottom { display: flex; justify-content: space-between; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--border); font-size: 0.875rem; }
+
+/* SELECTION BADGE */
+.selection-badge { display: inline-block; padding: 3px 10px; background: var(--accent); color: #fff; border-radius: 4px; font-size: 0.8125rem; font-weight: 600; }
+
+/* SECTION HEADER */
+.section-header { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.section-header h2 { margin: 0; }
+.section-link { font-size: 0.875rem; color: var(--accent); text-decoration: none; font-weight: 600; margin-left: auto; }
+.updated-badge { font-size: 0.8125rem; color: var(--text-muted); }
+
+/* DARK MODE OVERRIDES */
+[data-theme="dark"] .tip-card { background: var(--surface); }
+[data-theme="dark"] .tip-table th { background: var(--surface-2); }
+[data-theme="dark"] .tip-card-footer { background: var(--surface-2); }
+[data-theme="dark"] .odd-val { background: var(--surface-2); }
+[data-theme="dark"] .odd-val:hover { background: rgba(22, 65, 180, 0.15); }
+[data-theme="dark"] .league-badge { background: rgba(22, 65, 180, 0.15); }
+[data-theme="dark"] .match-odds-row:hover td { background: rgba(22, 65, 180, 0.08); }
+[data-theme="dark"] .tip-match-card { background: var(--surface); }
+[data-theme="dark"] .live-match-card { background: var(--surface); }
+[data-theme="dark"] .live-score-display { background: var(--surface-2); }
+[data-theme="dark"] .dropping-item { background: var(--surface); }
+[data-theme="dark"] .odds-fmt-btn { background: var(--surface-2); border-color: var(--border); }
+[data-theme="dark"] .odds-fmt-btn.active { background: var(--accent); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .tips-grid { grid-template-columns: 1fr; }
+  .live-scores-grid { grid-template-columns: 1fr; }
+  .odds-comparison-table { font-size: 0.75rem; }
+  .odd-val { min-width: 36px; padding: 3px 4px; font-size: 0.75rem; }
+  .section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .section-link { margin-left: 0; }
+  .odds-format-switcher { width: 100%; }
+  .odds-fmt-btn { flex: 1; text-align: center; padding: 8px 10px; }
+  .tip-card-header { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+}
