@@ -1366,3 +1366,63 @@ function t(key) {
   var strings = window.FA_STRINGS[window.FA_LANG] || window.FA_STRINGS['en'];
   return strings[key] || key;
 }
+
+
+// ============================================================
+// COUNTDOWN TIMERS — Show time until kickoff on tip cards
+// ============================================================
+(function() {
+  function updateCountdowns() {
+    document.querySelectorAll('[data-countdown]').forEach(function(el) {
+      var ko = new Date(el.dataset.countdown);
+      var now = new Date();
+      var diff = ko - now;
+      if (diff <= 0) {
+        el.textContent = 'Started';
+        el.classList.add('urgent');
+        return;
+      }
+      var hrs = Math.floor(diff / 3600000);
+      var mins = Math.floor((diff % 3600000) / 60000);
+      if (hrs > 24) {
+        var days = Math.floor(hrs / 24);
+        el.textContent = days + 'd ' + (hrs % 24) + 'h';
+      } else if (hrs > 0) {
+        el.textContent = hrs + 'h ' + mins + 'm';
+        if (hrs < 2) el.classList.add('urgent');
+      } else {
+        el.textContent = mins + 'm';
+        el.classList.add('urgent');
+      }
+    });
+  }
+  updateCountdowns();
+  setInterval(updateCountdowns, 60000);
+})();
+
+// ============================================================
+// ENHANCED FORMAT SWITCHER — Works with both old and new buttons
+// ============================================================
+(function() {
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.fmt-btn, .odds-fmt-btn');
+    if (!btn) return;
+    var fmt = btn.dataset.format;
+    if (!fmt) return;
+    
+    // Update all format buttons globally
+    document.querySelectorAll('.fmt-btn, .odds-fmt-btn').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.format === fmt);
+    });
+    
+    // Also update old-style buttons
+    document.querySelectorAll('.odds-switcher .tab-filter').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.format === fmt);
+    });
+    
+    // Format all odds
+    if (typeof setOddsFormat === 'function') {
+      setOddsFormat(fmt);
+    }
+  });
+})();
