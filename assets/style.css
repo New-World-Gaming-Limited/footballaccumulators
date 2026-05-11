@@ -1,6 +1,6 @@
 /* footballaccumulators — editorial sports broadsheet
    Warm newsprint paper, deep ink, single crest-red accent.
-   Fraunces (display serif) + Inter (sans body) + IBM Plex Mono (odds/timecodes). */
+   Source Serif 4 (display serif) + Inter (sans body) + IBM Plex Mono (odds/timecodes). */
 
 :root {
   /* Paper & ink */
@@ -37,7 +37,7 @@
   --radius-sm: 2px;
   --radius-pill: 999px;
 
-  --font-display: 'Fraunces', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
+  --font-display: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
   --font-body:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono:    'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
@@ -51,8 +51,9 @@ body {
   font-family: var(--font-body);
   background: var(--paper);
   color: var(--ink);
-  line-height: 1.55;
+  line-height: 1.6;
   font-size: 16px;
+  font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -78,7 +79,7 @@ strong, b { font-weight: 600; }
   font-weight: 700; font-size: 22px; line-height: 1;
   letter-spacing: -0.025em;
   color: var(--ink);
-  font-variation-settings: "SOFT" 0, "WONK" 0, "opsz" 144;
+  font-variation-settings: "opsz" 60;
 }
 .brand svg { color: var(--accent); align-self: center; }
 .brand b { color: var(--accent); font-weight: 700; font-style: italic; }
@@ -160,13 +161,13 @@ main { max-width: var(--container); margin: 0 auto; padding: 40px 28px 80px; }
   font-family: var(--font-display);
   font-size: clamp(36px, 6.5vw, 76px);
   line-height: 0.96;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.02em;
   max-width: 14ch;
   font-weight: 600;
   color: var(--ink);
-  font-variation-settings: "opsz" 144, "SOFT" 30;
+  font-variation-settings: "opsz" 60;
 }
-.hero h1 em { font-style: italic; color: var(--accent); font-variation-settings: "opsz" 144, "SOFT" 100; }
+.hero h1 em { font-style: italic; color: var(--accent); }
 .hero-sub {
   margin-top: 20px;
   font-size: 17px;
@@ -486,7 +487,7 @@ main { max-width: var(--container); margin: 0 auto; padding: 40px 28px 80px; }
   font-size: 17px; line-height: 1.7;
   color: var(--ink-2);
 }
-.editorial h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 52px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; color: var(--ink); margin: 0 0 12px; }
+.editorial h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 52px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 12px; }
 .editorial h1 em { color: var(--accent); font-style: italic; }
 .editorial > p:first-of-type::first-letter {
   font-family: var(--font-display); font-weight: 600;
