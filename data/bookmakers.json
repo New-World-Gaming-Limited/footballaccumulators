@@ -1,0 +1,89 @@
+{
+  "fetched_at": "2026-05-11T20:48:54.036537Z",
+  "books": [
+    {
+      "slug": "stake",
+      "order": 1,
+      "display": "Stake",
+      "bonus": "Crypto-native",
+      "promo": "",
+      "colour": "#1A823F",
+      "text_colour": "#ffffff",
+      "cta": "Visit",
+      "terms": "Over 18s only. T&Cs apply.",
+      "tracker": "/link/stake.html",
+      "logo_remote": null,
+      "logo_local": "/assets/books/stake.svg"
+    },
+    {
+      "slug": "bet365",
+      "order": 2,
+      "display": "bet365",
+      "bonus": "up to $100 Bet Credits",
+      "promo": "NEWBONUS",
+      "colour": "#14805e",
+      "text_colour": "#ffffff",
+      "cta": "Claim",
+      "terms": "Up to $100 in Bet Credits for new customers at\u00a0bet365.\u00a0\u00a0Min deposit $5. Bet Credits available for use upon settlement of bets to value of qualifying deposit. Min odds, bet and payment method exclusions apply. Returns exclude Bet Credits stake. Time limits and T&Cs apply.\u00a0The bonus code NEWBONUS can be used during registration, but does not change the offer amount in any way. 18+ Gambleaware.org.",
+      "tracker": "https://www.footballaccumulators.com/link/bet365-default/52/",
+      "logo_remote": "https://www.imageservera.com/uploadedimages/201810/Oct31/ORG_bet3654120_37091.svg",
+      "logo_local": "/assets/books/bet365.svg"
+    },
+    {
+      "slug": "1xbet",
+      "order": 3,
+      "display": "1xBet",
+      "bonus": "$130 Bonus",
+      "promo": "NEWBONUS",
+      "colour": "#1A5685",
+      "text_colour": "#ffffff",
+      "cta": "Claim",
+      "terms": "Get $30 more bonus when you use the 1xbet code NEWBONUS. T&Cs apply. Over 18s only. If you make a $100 first deposit without a promo code, you will receive a $100 bonus, if you use promo code NEWBONUS and then deposit $100, you will receive a $130 bonus.",
+      "tracker": "https://www.footballaccumulators.com/link/d6a163ef190612112956/52/",
+      "logo_remote": "https://www.imageservera.com/uploadedimages/201906/Jun12/ORG_1xbet logo1890_17014.svg",
+      "logo_local": "/assets/books/1xbet.svg"
+    },
+    {
+      "slug": "razed",
+      "order": 4,
+      "display": "Razed",
+      "bonus": "Boosted odds",
+      "promo": "",
+      "colour": "#FF4D2E",
+      "text_colour": "#ffffff",
+      "cta": "Visit",
+      "terms": "Over 18s only. T&Cs apply.",
+      "tracker": "/link/razed.html",
+      "logo_remote": null,
+      "logo_local": "/assets/books/razed.svg"
+    },
+    {
+      "slug": "roobet",
+      "order": 5,
+      "display": "Roobet",
+      "bonus": "Welcome pack",
+      "promo": "",
+      "colour": "#F0BB1F",
+      "text_colour": "#ffffff",
+      "cta": "Visit",
+      "terms": "Over 18s only. T&Cs apply.",
+      "tracker": "/link/roobet.html",
+      "logo_remote": null,
+      "logo_local": "/assets/books/roobet.svg"
+    },
+    {
+      "slug": "rainbet",
+      "order": 6,
+      "display": "Rainbet",
+      "bonus": "Rakeback",
+      "promo": "",
+      "colour": "#4F46E5",
+      "text_colour": "#ffffff",
+      "cta": "Visit",
+      "terms": "Over 18s only. T&Cs apply.",
+      "tracker": "/link/rainbet.html",
+      "logo_remote": null,
+      "logo_local": "/assets/books/rainbet.svg"
+    }
+  ]
+}

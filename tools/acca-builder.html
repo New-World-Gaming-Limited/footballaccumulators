@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Acca Builder · Build Your Football Accumulator</title>
 <meta name="description" content="Build a custom football accumulator from today&#x27;s live matches. Auto-build Safe, Value, or Long-shot accas instantly.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<meta name="theme-color" content="#0B0B0F">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/style.css">
 <link rel="stylesheet" href="../assets/style.css">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SZ5B36XCV6"></script>
@@ -16,12 +18,12 @@
 </head>
 <body>
 <header class="site-header">
-  <a href="../index.html" class="brand">
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-      <circle cx="14" cy="14" r="11"/>
-      <path d="M14 3v22M3 14h22"/>
+  <a href="../index.html" class="brand" aria-label="FootballAccumulators home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 3v18M3 12h18"/>
     </svg>
-    <span>Football<b>Accumulators</b></span>
+    <span>Football<b>Accas</b></span>
   </a>
   <nav class="site-nav"><a href="../index.html" class="nav-link">Today's Accas</a><a href="../tools/acca-builder.html" class="nav-link is-active">Acca Builder</a><a href="../tips/index.html" class="nav-link">Tips</a><a href="../bookmakers/index.html" class="nav-link">Bookmakers</a></nav>
   <div class="header-tools">
@@ -30,18 +32,16 @@
       <button class="fs-btn" data-fmt="fractional">Frac</button>
       <button class="fs-btn" data-fmt="american">US</button>
     </div>
-    <button class="menu-toggle" aria-label="Menu">☰</button>
   </div>
 </header>
-<nav class="mobile-nav" hidden><a href="../index.html" class="nav-link">Today's Accas</a><a href="../tools/acca-builder.html" class="nav-link is-active">Acca Builder</a><a href="../tips/index.html" class="nav-link">Tips</a><a href="../bookmakers/index.html" class="nav-link">Bookmakers</a></nav>
 <main>
 <section class="ab-hero">
   <h1>Acca Builder</h1>
   <p>14 live matches across 8 leagues. Pick selections — slip updates live. Or hit Auto-build for an instant acca.</p>
   <div class="ab-auto">
-    <button class="auto-btn" data-mode="safe">Auto-build · Safe</button>
-    <button class="auto-btn" data-mode="value">Auto-build · Value</button>
-    <button class="auto-btn" data-mode="longshot">Auto-build · Long-shot</button>
+    <button class="auto-btn" data-mode="safe">Auto · Safe</button>
+    <button class="auto-btn" data-mode="value">Auto · Value</button>
+    <button class="auto-btn" data-mode="longshot">Auto · Long-shot</button>
   </div>
 </section>
 
@@ -49,370 +49,311 @@
   <div class="ab-matches">
 <div class="ab-row">
   <div class="ab-meta">
-    <span class="ab-league">Italy - Serie A</span>
-    <span class="ab-time" data-utc="2026-05-11T18:45:00Z">Mon 11 May · 18:45</span>
+    <span>Italy - Serie A</span>
+    <span data-utc="2026-05-11T18:45:00Z">Mon 11 May · 18:45</span>
   </div>
-  <div class="ab-teams">SSC Napoli <small>vs</small> Bologna FC</div>
+  <div class="ab-teams">SSC Napoli vs Bologna FC</div>
   <div class="ab-markets">
-    <div class="ab-mkt"><span class="ab-mkt-label">1X2</span>
-      <button class="ab-px" data-event="61061657" data-market="ml" data-outcome="home" data-match="SSC Napoli vs Bologna FC" data-selection="SSC Napoli Win" data-odds="1.586" data-bk="1xbet"><span class="ab-px-label">SSC Napoli Win</span><span class="ab-px-odds" data-decimal="1.586">1.586</span></button>
-      <button class="ab-px" data-event="61061657" data-market="ml" data-outcome="draw" data-match="SSC Napoli vs Bologna FC" data-selection="Draw" data-odds="4.37" data-bk="1xbet"><span class="ab-px-label">Draw</span><span class="ab-px-odds" data-decimal="4.37">4.37</span></button>
-      <button class="ab-px" data-event="61061657" data-market="ml" data-outcome="away" data-match="SSC Napoli vs Bologna FC" data-selection="Bologna FC Win" data-odds="6.4" data-bk="1xbet"><span class="ab-px-label">Bologna FC Win</span><span class="ab-px-odds" data-decimal="6.4">6.4</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">BTTS</span>
-      <button class="ab-px" data-event="61061657" data-market="btts" data-outcome="yes" data-match="SSC Napoli vs Bologna FC" data-selection="BTTS Yes" data-odds="2.0" data-bk="Stake"><span class="ab-px-label">BTTS Yes</span><span class="ab-px-odds" data-decimal="2.0">2.0</span></button>
-      <button class="ab-px" data-event="61061657" data-market="btts" data-outcome="no" data-match="SSC Napoli vs Bologna FC" data-selection="BTTS No" data-odds="1.8" data-bk="Bet365"><span class="ab-px-label">BTTS No</span><span class="ab-px-odds" data-decimal="1.8">1.8</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">O/U 2.5</span>
-      <button class="ab-px" data-event="61061657" data-market="over_25" data-outcome="over" data-match="SSC Napoli vs Bologna FC" data-selection="Over 2.5" data-odds="1.97" data-bk="1xbet"><span class="ab-px-label">Over 2.5</span><span class="ab-px-odds" data-decimal="1.97">1.97</span></button>
-      <button class="ab-px" data-event="61061657" data-market="over_25" data-outcome="under" data-match="SSC Napoli vs Bologna FC" data-selection="Under 2.5" data-odds="1.97" data-bk="1xbet"><span class="ab-px-label">Under 2.5</span><span class="ab-px-odds" data-decimal="1.97">1.97</span></button>
-    </div>
+    <button class="ab-mkt ab-px" data-event="61061657" data-market="ml" data-outcome="home" data-match="SSC Napoli vs Bologna FC" data-selection="SSC Napoli" data-odds="1.586" data-bk="1xbet"><span class="label">SSC Napoli</span><span class="px ab-px-odds" data-decimal="1.586">1.586</span></button>
+    <button class="ab-mkt ab-px" data-event="61061657" data-market="ml" data-outcome="draw" data-match="SSC Napoli vs Bologna FC" data-selection="Draw" data-odds="4.37" data-bk="1xbet"><span class="label">Draw</span><span class="px ab-px-odds" data-decimal="4.37">4.37</span></button>
+    <button class="ab-mkt ab-px" data-event="61061657" data-market="ml" data-outcome="away" data-match="SSC Napoli vs Bologna FC" data-selection="Bologna FC" data-odds="6.4" data-bk="1xbet"><span class="label">Bologna FC</span><span class="px ab-px-odds" data-decimal="6.4">6.4</span></button>
+    <button class="ab-mkt ab-px" data-event="61061657" data-market="btts" data-outcome="yes" data-match="SSC Napoli vs Bologna FC" data-selection="BTTS Yes" data-odds="2.0" data-bk="Stake"><span class="label">BTTS Yes</span><span class="px ab-px-odds" data-decimal="2.0">2.0</span></button>
+    <button class="ab-mkt ab-px" data-event="61061657" data-market="btts" data-outcome="no" data-match="SSC Napoli vs Bologna FC" data-selection="BTTS No" data-odds="1.8" data-bk="Bet365"><span class="label">BTTS No</span><span class="px ab-px-odds" data-decimal="1.8">1.8</span></button>
+    <button class="ab-mkt ab-px" data-event="61061657" data-market="over_25" data-outcome="over" data-match="SSC Napoli vs Bologna FC" data-selection="Over 2.5" data-odds="1.97" data-bk="1xbet"><span class="label">Over 2.5</span><span class="px ab-px-odds" data-decimal="1.97">1.97</span></button>
+    <button class="ab-mkt ab-px" data-event="61061657" data-market="over_25" data-outcome="under" data-match="SSC Napoli vs Bologna FC" data-selection="Under 2.5" data-odds="1.97" data-bk="1xbet"><span class="label">Under 2.5</span><span class="px ab-px-odds" data-decimal="1.97">1.97</span></button>
   </div>
 </div>
 <div class="ab-row">
   <div class="ab-meta">
-    <span class="ab-league">England - Premier League</span>
-    <span class="ab-time" data-utc="2026-05-11T19:00:00Z">Mon 11 May · 19:00</span>
+    <span>England - Premier League</span>
+    <span data-utc="2026-05-11T19:00:00Z">Mon 11 May · 19:00</span>
   </div>
-  <div class="ab-teams">Tottenham Hotspur <small>vs</small> Leeds United</div>
+  <div class="ab-teams">Tottenham Hotspur vs Leeds United</div>
   <div class="ab-markets">
-    <div class="ab-mkt"><span class="ab-mkt-label">1X2</span>
-      <button class="ab-px" data-event="61301243" data-market="ml" data-outcome="home" data-match="Tottenham Hotspur vs Leeds United" data-selection="Tottenham Hotspur Win" data-odds="1.84" data-bk="1xbet"><span class="ab-px-label">Tottenham Hotspur Win</span><span class="ab-px-odds" data-decimal="1.84">1.84</span></button>
-      <button class="ab-px" data-event="61301243" data-market="ml" data-outcome="draw" data-match="Tottenham Hotspur vs Leeds United" data-selection="Draw" data-odds="4.115" data-bk="1xbet"><span class="ab-px-label">Draw</span><span class="ab-px-odds" data-decimal="4.115">4.115</span></button>
-      <button class="ab-px" data-event="61301243" data-market="ml" data-outcome="away" data-match="Tottenham Hotspur vs Leeds United" data-selection="Leeds United Win" data-odds="4.4" data-bk="Rainbet"><span class="ab-px-label">Leeds United Win</span><span class="ab-px-odds" data-decimal="4.4">4.4</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">BTTS</span>
-      <button class="ab-px" data-event="61301243" data-market="btts" data-outcome="yes" data-match="Tottenham Hotspur vs Leeds United" data-selection="BTTS Yes" data-odds="1.75" data-bk="Bet365"><span class="ab-px-label">BTTS Yes</span><span class="ab-px-odds" data-decimal="1.75">1.75</span></button>
-      <button class="ab-px" data-event="61301243" data-market="btts" data-outcome="no" data-match="Tottenham Hotspur vs Leeds United" data-selection="BTTS No" data-odds="2.06" data-bk="Stake"><span class="ab-px-label">BTTS No</span><span class="ab-px-odds" data-decimal="2.06">2.06</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">O/U 2.5</span>
-      <button class="ab-px" data-event="61301243" data-market="over_25" data-outcome="over" data-match="Tottenham Hotspur vs Leeds United" data-selection="Over 2.5" data-odds="1.845" data-bk="1xbet"><span class="ab-px-label">Over 2.5</span><span class="ab-px-odds" data-decimal="1.845">1.845</span></button>
-      <button class="ab-px" data-event="61301243" data-market="over_25" data-outcome="under" data-match="Tottenham Hotspur vs Leeds United" data-selection="Under 2.5" data-odds="2.113" data-bk="1xbet"><span class="ab-px-label">Under 2.5</span><span class="ab-px-odds" data-decimal="2.113">2.113</span></button>
-    </div>
+    <button class="ab-mkt ab-px" data-event="61301243" data-market="ml" data-outcome="home" data-match="Tottenham Hotspur vs Leeds United" data-selection="Tottenham Hotspur" data-odds="1.84" data-bk="1xbet"><span class="label">Tottenham Hotspur</span><span class="px ab-px-odds" data-decimal="1.84">1.84</span></button>
+    <button class="ab-mkt ab-px" data-event="61301243" data-market="ml" data-outcome="draw" data-match="Tottenham Hotspur vs Leeds United" data-selection="Draw" data-odds="4.115" data-bk="1xbet"><span class="label">Draw</span><span class="px ab-px-odds" data-decimal="4.115">4.115</span></button>
+    <button class="ab-mkt ab-px" data-event="61301243" data-market="ml" data-outcome="away" data-match="Tottenham Hotspur vs Leeds United" data-selection="Leeds United" data-odds="4.4" data-bk="Rainbet"><span class="label">Leeds United</span><span class="px ab-px-odds" data-decimal="4.4">4.4</span></button>
+    <button class="ab-mkt ab-px" data-event="61301243" data-market="btts" data-outcome="yes" data-match="Tottenham Hotspur vs Leeds United" data-selection="BTTS Yes" data-odds="1.75" data-bk="Bet365"><span class="label">BTTS Yes</span><span class="px ab-px-odds" data-decimal="1.75">1.75</span></button>
+    <button class="ab-mkt ab-px" data-event="61301243" data-market="btts" data-outcome="no" data-match="Tottenham Hotspur vs Leeds United" data-selection="BTTS No" data-odds="2.06" data-bk="Stake"><span class="label">BTTS No</span><span class="px ab-px-odds" data-decimal="2.06">2.06</span></button>
+    <button class="ab-mkt ab-px" data-event="61301243" data-market="over_25" data-outcome="over" data-match="Tottenham Hotspur vs Leeds United" data-selection="Over 2.5" data-odds="1.845" data-bk="1xbet"><span class="label">Over 2.5</span><span class="px ab-px-odds" data-decimal="1.845">1.845</span></button>
+    <button class="ab-mkt ab-px" data-event="61301243" data-market="over_25" data-outcome="under" data-match="Tottenham Hotspur vs Leeds United" data-selection="Under 2.5" data-odds="2.113" data-bk="1xbet"><span class="label">Under 2.5</span><span class="px ab-px-odds" data-decimal="2.113">2.113</span></button>
   </div>
 </div>
 <div class="ab-row">
   <div class="ab-meta">
-    <span class="ab-league">France - Ligue 1</span>
-    <span class="ab-time" data-utc="2026-05-12T18:30:00Z">Tue 12 May · 18:30</span>
+    <span>France - Ligue 1</span>
+    <span data-utc="2026-05-12T18:30:00Z">Tue 12 May · 18:30</span>
   </div>
-  <div class="ab-teams">Red Star FC <small>vs</small> Rodez Aveyron Football</div>
+  <div class="ab-teams">Red Star FC vs Rodez Aveyron Football</div>
   <div class="ab-markets">
-    <div class="ab-mkt"><span class="ab-mkt-label">1X2</span>
-      <button class="ab-px" data-event="71411500" data-market="ml" data-outcome="home" data-match="Red Star FC vs Rodez Aveyron Football" data-selection="Red Star FC Win" data-odds="1.83" data-bk="Stake"><span class="ab-px-label">Red Star FC Win</span><span class="ab-px-odds" data-decimal="1.83">1.83</span></button>
-      <button class="ab-px" data-event="71411500" data-market="ml" data-outcome="draw" data-match="Red Star FC vs Rodez Aveyron Football" data-selection="Draw" data-odds="3.8" data-bk="1xbet"><span class="ab-px-label">Draw</span><span class="ab-px-odds" data-decimal="3.8">3.8</span></button>
-      <button class="ab-px" data-event="71411500" data-market="ml" data-outcome="away" data-match="Red Star FC vs Rodez Aveyron Football" data-selection="Rodez Aveyron Football Win" data-odds="4.3" data-bk="Rainbet"><span class="ab-px-label">Rodez Aveyron Football Win</span><span class="ab-px-odds" data-decimal="4.3">4.3</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">BTTS</span>
-      <button class="ab-px" data-event="71411500" data-market="btts" data-outcome="yes" data-match="Red Star FC vs Rodez Aveyron Football" data-selection="BTTS Yes" data-odds="1.571" data-bk="1xbet"><span class="ab-px-label">BTTS Yes</span><span class="ab-px-odds" data-decimal="1.571">1.571</span></button>
-      <button class="ab-px" data-event="71411500" data-market="btts" data-outcome="no" data-match="Red Star FC vs Rodez Aveyron Football" data-selection="BTTS No" data-odds="2.334" data-bk="1xbet"><span class="ab-px-label">BTTS No</span><span class="ab-px-odds" data-decimal="2.334">2.334</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">O/U 2.5</span>
-      <button class="ab-px" data-event="71411500" data-market="over_25" data-outcome="over" data-match="Red Star FC vs Rodez Aveyron Football" data-selection="Over 2.5" data-odds="1.6" data-bk="Rainbet"><span class="ab-px-label">Over 2.5</span><span class="ab-px-odds" data-decimal="1.6">1.6</span></button>
-      <button class="ab-px" data-event="71411500" data-market="over_25" data-outcome="under" data-match="Red Star FC vs Rodez Aveyron Football" data-selection="Under 2.5" data-odds="2.28" data-bk="Rainbet"><span class="ab-px-label">Under 2.5</span><span class="ab-px-odds" data-decimal="2.28">2.28</span></button>
-    </div>
+    <button class="ab-mkt ab-px" data-event="71411500" data-market="ml" data-outcome="home" data-match="Red Star FC vs Rodez Aveyron Football" data-selection="Red Star FC" data-odds="1.83" data-bk="Stake"><span class="label">Red Star FC</span><span class="px ab-px-odds" data-decimal="1.83">1.83</span></button>
+    <button class="ab-mkt ab-px" data-event="71411500" data-market="ml" data-outcome="draw" data-match="Red Star FC vs Rodez Aveyron Football" data-selection="Draw" data-odds="3.8" data-bk="1xbet"><span class="label">Draw</span><span class="px ab-px-odds" data-decimal="3.8">3.8</span></button>
+    <button class="ab-mkt ab-px" data-event="71411500" data-market="ml" data-outcome="away" data-match="Red Star FC vs Rodez Aveyron Football" data-selection="Rodez Aveyron Football" data-odds="4.3" data-bk="Rainbet"><span class="label">Rodez Aveyron Football</span><span class="px ab-px-odds" data-decimal="4.3">4.3</span></button>
+    <button class="ab-mkt ab-px" data-event="71411500" data-market="btts" data-outcome="yes" data-match="Red Star FC vs Rodez Aveyron Football" data-selection="BTTS Yes" data-odds="1.571" data-bk="1xbet"><span class="label">BTTS Yes</span><span class="px ab-px-odds" data-decimal="1.571">1.571</span></button>
+    <button class="ab-mkt ab-px" data-event="71411500" data-market="btts" data-outcome="no" data-match="Red Star FC vs Rodez Aveyron Football" data-selection="BTTS No" data-odds="2.334" data-bk="1xbet"><span class="label">BTTS No</span><span class="px ab-px-odds" data-decimal="2.334">2.334</span></button>
+    <button class="ab-mkt ab-px" data-event="71411500" data-market="over_25" data-outcome="over" data-match="Red Star FC vs Rodez Aveyron Football" data-selection="Over 2.5" data-odds="1.6" data-bk="Rainbet"><span class="label">Over 2.5</span><span class="px ab-px-odds" data-decimal="1.6">1.6</span></button>
+    <button class="ab-mkt ab-px" data-event="71411500" data-market="over_25" data-outcome="under" data-match="Red Star FC vs Rodez Aveyron Football" data-selection="Under 2.5" data-odds="2.28" data-bk="Rainbet"><span class="label">Under 2.5</span><span class="px ab-px-odds" data-decimal="2.28">2.28</span></button>
   </div>
 </div>
 <div class="ab-row">
   <div class="ab-meta">
-    <span class="ab-league">Scotland - Premiership</span>
-    <span class="ab-time" data-utc="2026-05-12T18:45:00Z">Tue 12 May · 18:45</span>
+    <span>Scotland - Premiership</span>
+    <span data-utc="2026-05-12T18:45:00Z">Tue 12 May · 18:45</span>
   </div>
-  <div class="ab-teams">Dunfermline Athletic FC <small>vs</small> Partick Thistle FC</div>
+  <div class="ab-teams">Dunfermline Athletic FC vs Partick Thistle FC</div>
   <div class="ab-markets">
-    <div class="ab-mkt"><span class="ab-mkt-label">1X2</span>
-      <button class="ab-px" data-event="71401830" data-market="ml" data-outcome="home" data-match="Dunfermline Athletic FC vs Partick Thistle FC" data-selection="Dunfermline Athletic FC Win" data-odds="2.85" data-bk="Stake"><span class="ab-px-label">Dunfermline Athletic FC Win</span><span class="ab-px-odds" data-decimal="2.85">2.85</span></button>
-      <button class="ab-px" data-event="71401830" data-market="ml" data-outcome="draw" data-match="Dunfermline Athletic FC vs Partick Thistle FC" data-selection="Draw" data-odds="3.4" data-bk="Bet365"><span class="ab-px-label">Draw</span><span class="ab-px-odds" data-decimal="3.4">3.4</span></button>
-      <button class="ab-px" data-event="71401830" data-market="ml" data-outcome="away" data-match="Dunfermline Athletic FC vs Partick Thistle FC" data-selection="Partick Thistle FC Win" data-odds="2.55" data-bk="Stake"><span class="ab-px-label">Partick Thistle FC Win</span><span class="ab-px-odds" data-decimal="2.55">2.55</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">BTTS</span>
-      <button class="ab-px" data-event="71401830" data-market="btts" data-outcome="yes" data-match="Dunfermline Athletic FC vs Partick Thistle FC" data-selection="BTTS Yes" data-odds="1.8" data-bk="Bet365"><span class="ab-px-label">BTTS Yes</span><span class="ab-px-odds" data-decimal="1.8">1.8</span></button>
-      <button class="ab-px" data-event="71401830" data-market="btts" data-outcome="no" data-match="Dunfermline Athletic FC vs Partick Thistle FC" data-selection="BTTS No" data-odds="1.99" data-bk="Stake"><span class="ab-px-label">BTTS No</span><span class="ab-px-odds" data-decimal="1.99">1.99</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">O/U 2.5</span>
-      <button class="ab-px" data-event="71401830" data-market="over_25" data-outcome="over" data-match="Dunfermline Athletic FC vs Partick Thistle FC" data-selection="Over 2.5" data-odds="2.01" data-bk="1xbet"><span class="ab-px-label">Over 2.5</span><span class="ab-px-odds" data-decimal="2.01">2.01</span></button>
-      <button class="ab-px" data-event="71401830" data-market="over_25" data-outcome="under" data-match="Dunfermline Athletic FC vs Partick Thistle FC" data-selection="Under 2.5" data-odds="1.8" data-bk="Bet365"><span class="ab-px-label">Under 2.5</span><span class="ab-px-odds" data-decimal="1.8">1.8</span></button>
-    </div>
+    <button class="ab-mkt ab-px" data-event="71401830" data-market="ml" data-outcome="home" data-match="Dunfermline Athletic FC vs Partick Thistle FC" data-selection="Dunfermline Athletic FC" data-odds="2.85" data-bk="Stake"><span class="label">Dunfermline Athletic FC</span><span class="px ab-px-odds" data-decimal="2.85">2.85</span></button>
+    <button class="ab-mkt ab-px" data-event="71401830" data-market="ml" data-outcome="draw" data-match="Dunfermline Athletic FC vs Partick Thistle FC" data-selection="Draw" data-odds="3.4" data-bk="Bet365"><span class="label">Draw</span><span class="px ab-px-odds" data-decimal="3.4">3.4</span></button>
+    <button class="ab-mkt ab-px" data-event="71401830" data-market="ml" data-outcome="away" data-match="Dunfermline Athletic FC vs Partick Thistle FC" data-selection="Partick Thistle FC" data-odds="2.55" data-bk="Stake"><span class="label">Partick Thistle FC</span><span class="px ab-px-odds" data-decimal="2.55">2.55</span></button>
+    <button class="ab-mkt ab-px" data-event="71401830" data-market="btts" data-outcome="yes" data-match="Dunfermline Athletic FC vs Partick Thistle FC" data-selection="BTTS Yes" data-odds="1.8" data-bk="Bet365"><span class="label">BTTS Yes</span><span class="px ab-px-odds" data-decimal="1.8">1.8</span></button>
+    <button class="ab-mkt ab-px" data-event="71401830" data-market="btts" data-outcome="no" data-match="Dunfermline Athletic FC vs Partick Thistle FC" data-selection="BTTS No" data-odds="1.99" data-bk="Stake"><span class="label">BTTS No</span><span class="px ab-px-odds" data-decimal="1.99">1.99</span></button>
+    <button class="ab-mkt ab-px" data-event="71401830" data-market="over_25" data-outcome="over" data-match="Dunfermline Athletic FC vs Partick Thistle FC" data-selection="Over 2.5" data-odds="2.01" data-bk="1xbet"><span class="label">Over 2.5</span><span class="px ab-px-odds" data-decimal="2.01">2.01</span></button>
+    <button class="ab-mkt ab-px" data-event="71401830" data-market="over_25" data-outcome="under" data-match="Dunfermline Athletic FC vs Partick Thistle FC" data-selection="Under 2.5" data-odds="1.8" data-bk="Bet365"><span class="label">Under 2.5</span><span class="px ab-px-odds" data-decimal="1.8">1.8</span></button>
   </div>
 </div>
 <div class="ab-row">
   <div class="ab-meta">
-    <span class="ab-league">Scotland - Premiership</span>
-    <span class="ab-time" data-utc="2026-05-12T18:45:00Z">Tue 12 May · 18:45</span>
+    <span>Scotland - Premiership</span>
+    <span data-utc="2026-05-12T18:45:00Z">Tue 12 May · 18:45</span>
   </div>
-  <div class="ab-teams">Aberdeen FC <small>vs</small> St Mirren FC</div>
+  <div class="ab-teams">Aberdeen FC vs St Mirren FC</div>
   <div class="ab-markets">
-    <div class="ab-mkt"><span class="ab-mkt-label">1X2</span>
-      <button class="ab-px" data-event="70674928" data-market="ml" data-outcome="home" data-match="Aberdeen FC vs St Mirren FC" data-selection="Aberdeen FC Win" data-odds="2.2" data-bk="Bet365"><span class="ab-px-label">Aberdeen FC Win</span><span class="ab-px-odds" data-decimal="2.2">2.2</span></button>
-      <button class="ab-px" data-event="70674928" data-market="ml" data-outcome="draw" data-match="Aberdeen FC vs St Mirren FC" data-selection="Draw" data-odds="3.55" data-bk="Stake"><span class="ab-px-label">Draw</span><span class="ab-px-odds" data-decimal="3.55">3.55</span></button>
-      <button class="ab-px" data-event="70674928" data-market="ml" data-outcome="away" data-match="Aberdeen FC vs St Mirren FC" data-selection="St Mirren FC Win" data-odds="3.3" data-bk="Stake"><span class="ab-px-label">St Mirren FC Win</span><span class="ab-px-odds" data-decimal="3.3">3.3</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">BTTS</span>
-      <button class="ab-px" data-event="70674928" data-market="btts" data-outcome="yes" data-match="Aberdeen FC vs St Mirren FC" data-selection="BTTS Yes" data-odds="1.74" data-bk="Stake"><span class="ab-px-label">BTTS Yes</span><span class="ab-px-odds" data-decimal="1.74">1.74</span></button>
-      <button class="ab-px" data-event="70674928" data-market="btts" data-outcome="no" data-match="Aberdeen FC vs St Mirren FC" data-selection="BTTS No" data-odds="2.08" data-bk="Roobet"><span class="ab-px-label">BTTS No</span><span class="ab-px-odds" data-decimal="2.08">2.08</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">O/U 2.5</span>
-      <button class="ab-px" data-event="70674928" data-market="over_25" data-outcome="over" data-match="Aberdeen FC vs St Mirren FC" data-selection="Over 2.5" data-odds="1.925" data-bk="Bet365"><span class="ab-px-label">Over 2.5</span><span class="ab-px-odds" data-decimal="1.925">1.925</span></button>
-      <button class="ab-px" data-event="70674928" data-market="over_25" data-outcome="under" data-match="Aberdeen FC vs St Mirren FC" data-selection="Under 2.5" data-odds="1.925" data-bk="Bet365"><span class="ab-px-label">Under 2.5</span><span class="ab-px-odds" data-decimal="1.925">1.925</span></button>
-    </div>
+    <button class="ab-mkt ab-px" data-event="70674928" data-market="ml" data-outcome="home" data-match="Aberdeen FC vs St Mirren FC" data-selection="Aberdeen FC" data-odds="2.2" data-bk="Bet365"><span class="label">Aberdeen FC</span><span class="px ab-px-odds" data-decimal="2.2">2.2</span></button>
+    <button class="ab-mkt ab-px" data-event="70674928" data-market="ml" data-outcome="draw" data-match="Aberdeen FC vs St Mirren FC" data-selection="Draw" data-odds="3.55" data-bk="Stake"><span class="label">Draw</span><span class="px ab-px-odds" data-decimal="3.55">3.55</span></button>
+    <button class="ab-mkt ab-px" data-event="70674928" data-market="ml" data-outcome="away" data-match="Aberdeen FC vs St Mirren FC" data-selection="St Mirren FC" data-odds="3.3" data-bk="Stake"><span class="label">St Mirren FC</span><span class="px ab-px-odds" data-decimal="3.3">3.3</span></button>
+    <button class="ab-mkt ab-px" data-event="70674928" data-market="btts" data-outcome="yes" data-match="Aberdeen FC vs St Mirren FC" data-selection="BTTS Yes" data-odds="1.74" data-bk="Stake"><span class="label">BTTS Yes</span><span class="px ab-px-odds" data-decimal="1.74">1.74</span></button>
+    <button class="ab-mkt ab-px" data-event="70674928" data-market="btts" data-outcome="no" data-match="Aberdeen FC vs St Mirren FC" data-selection="BTTS No" data-odds="2.08" data-bk="Roobet"><span class="label">BTTS No</span><span class="px ab-px-odds" data-decimal="2.08">2.08</span></button>
+    <button class="ab-mkt ab-px" data-event="70674928" data-market="over_25" data-outcome="over" data-match="Aberdeen FC vs St Mirren FC" data-selection="Over 2.5" data-odds="1.925" data-bk="Bet365"><span class="label">Over 2.5</span><span class="px ab-px-odds" data-decimal="1.925">1.925</span></button>
+    <button class="ab-mkt ab-px" data-event="70674928" data-market="over_25" data-outcome="under" data-match="Aberdeen FC vs St Mirren FC" data-selection="Under 2.5" data-odds="1.925" data-bk="Bet365"><span class="label">Under 2.5</span><span class="px ab-px-odds" data-decimal="1.925">1.925</span></button>
   </div>
 </div>
 <div class="ab-row">
   <div class="ab-meta">
-    <span class="ab-league">Scotland - Premiership</span>
-    <span class="ab-time" data-utc="2026-05-12T18:45:00Z">Tue 12 May · 18:45</span>
+    <span>Scotland - Premiership</span>
+    <span data-utc="2026-05-12T18:45:00Z">Tue 12 May · 18:45</span>
   </div>
-  <div class="ab-teams">Dundee United <small>vs</small> Livingston FC</div>
+  <div class="ab-teams">Dundee United vs Livingston FC</div>
   <div class="ab-markets">
-    <div class="ab-mkt"><span class="ab-mkt-label">1X2</span>
-      <button class="ab-px" data-event="70674930" data-market="ml" data-outcome="home" data-match="Dundee United vs Livingston FC" data-selection="Dundee United Win" data-odds="1.76" data-bk="Stake"><span class="ab-px-label">Dundee United Win</span><span class="ab-px-odds" data-decimal="1.76">1.76</span></button>
-      <button class="ab-px" data-event="70674930" data-market="ml" data-outcome="draw" data-match="Dundee United vs Livingston FC" data-selection="Draw" data-odds="4.1" data-bk="Stake"><span class="ab-px-label">Draw</span><span class="ab-px-odds" data-decimal="4.1">4.1</span></button>
-      <button class="ab-px" data-event="70674930" data-market="ml" data-outcome="away" data-match="Dundee United vs Livingston FC" data-selection="Livingston FC Win" data-odds="4.405" data-bk="1xbet"><span class="ab-px-label">Livingston FC Win</span><span class="ab-px-odds" data-decimal="4.405">4.405</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">BTTS</span>
-      <button class="ab-px" data-event="70674930" data-market="btts" data-outcome="yes" data-match="Dundee United vs Livingston FC" data-selection="BTTS Yes" data-odds="1.666" data-bk="Bet365"><span class="ab-px-label">BTTS Yes</span><span class="ab-px-odds" data-decimal="1.666">1.666</span></button>
-      <button class="ab-px" data-event="70674930" data-market="btts" data-outcome="no" data-match="Dundee United vs Livingston FC" data-selection="BTTS No" data-odds="2.19" data-bk="Stake"><span class="ab-px-label">BTTS No</span><span class="ab-px-odds" data-decimal="2.19">2.19</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">O/U 2.5</span>
-      <button class="ab-px" data-event="70674930" data-market="over_25" data-outcome="over" data-match="Dundee United vs Livingston FC" data-selection="Over 2.5" data-odds="1.666" data-bk="1xbet"><span class="ab-px-label">Over 2.5</span><span class="ab-px-odds" data-decimal="1.666">1.666</span></button>
-      <button class="ab-px" data-event="70674930" data-market="over_25" data-outcome="under" data-match="Dundee United vs Livingston FC" data-selection="Under 2.5" data-odds="2.2" data-bk="Stake"><span class="ab-px-label">Under 2.5</span><span class="ab-px-odds" data-decimal="2.2">2.2</span></button>
-    </div>
+    <button class="ab-mkt ab-px" data-event="70674930" data-market="ml" data-outcome="home" data-match="Dundee United vs Livingston FC" data-selection="Dundee United" data-odds="1.76" data-bk="Stake"><span class="label">Dundee United</span><span class="px ab-px-odds" data-decimal="1.76">1.76</span></button>
+    <button class="ab-mkt ab-px" data-event="70674930" data-market="ml" data-outcome="draw" data-match="Dundee United vs Livingston FC" data-selection="Draw" data-odds="4.1" data-bk="Stake"><span class="label">Draw</span><span class="px ab-px-odds" data-decimal="4.1">4.1</span></button>
+    <button class="ab-mkt ab-px" data-event="70674930" data-market="ml" data-outcome="away" data-match="Dundee United vs Livingston FC" data-selection="Livingston FC" data-odds="4.405" data-bk="1xbet"><span class="label">Livingston FC</span><span class="px ab-px-odds" data-decimal="4.405">4.405</span></button>
+    <button class="ab-mkt ab-px" data-event="70674930" data-market="btts" data-outcome="yes" data-match="Dundee United vs Livingston FC" data-selection="BTTS Yes" data-odds="1.666" data-bk="Bet365"><span class="label">BTTS Yes</span><span class="px ab-px-odds" data-decimal="1.666">1.666</span></button>
+    <button class="ab-mkt ab-px" data-event="70674930" data-market="btts" data-outcome="no" data-match="Dundee United vs Livingston FC" data-selection="BTTS No" data-odds="2.19" data-bk="Stake"><span class="label">BTTS No</span><span class="px ab-px-odds" data-decimal="2.19">2.19</span></button>
+    <button class="ab-mkt ab-px" data-event="70674930" data-market="over_25" data-outcome="over" data-match="Dundee United vs Livingston FC" data-selection="Over 2.5" data-odds="1.666" data-bk="1xbet"><span class="label">Over 2.5</span><span class="px ab-px-odds" data-decimal="1.666">1.666</span></button>
+    <button class="ab-mkt ab-px" data-event="70674930" data-market="over_25" data-outcome="under" data-match="Dundee United vs Livingston FC" data-selection="Under 2.5" data-odds="2.2" data-bk="Stake"><span class="label">Under 2.5</span><span class="px ab-px-odds" data-decimal="2.2">2.2</span></button>
   </div>
 </div>
 <div class="ab-row">
   <div class="ab-meta">
-    <span class="ab-league">Scotland - Premiership</span>
-    <span class="ab-time" data-utc="2026-05-12T18:45:00Z">Tue 12 May · 18:45</span>
+    <span>Scotland - Premiership</span>
+    <span data-utc="2026-05-12T18:45:00Z">Tue 12 May · 18:45</span>
   </div>
-  <div class="ab-teams">Kilmarnock FC <small>vs</small> Dundee FC</div>
+  <div class="ab-teams">Kilmarnock FC vs Dundee FC</div>
   <div class="ab-markets">
-    <div class="ab-mkt"><span class="ab-mkt-label">1X2</span>
-      <button class="ab-px" data-event="70674932" data-market="ml" data-outcome="home" data-match="Kilmarnock FC vs Dundee FC" data-selection="Kilmarnock FC Win" data-odds="1.95" data-bk="Stake"><span class="ab-px-label">Kilmarnock FC Win</span><span class="ab-px-odds" data-decimal="1.95">1.95</span></button>
-      <button class="ab-px" data-event="70674932" data-market="ml" data-outcome="draw" data-match="Kilmarnock FC vs Dundee FC" data-selection="Draw" data-odds="3.7" data-bk="Stake"><span class="ab-px-label">Draw</span><span class="ab-px-odds" data-decimal="3.7">3.7</span></button>
-      <button class="ab-px" data-event="70674932" data-market="ml" data-outcome="away" data-match="Kilmarnock FC vs Dundee FC" data-selection="Dundee FC Win" data-odds="3.85" data-bk="1xbet"><span class="ab-px-label">Dundee FC Win</span><span class="ab-px-odds" data-decimal="3.85">3.85</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">BTTS</span>
-      <button class="ab-px" data-event="70674932" data-market="btts" data-outcome="yes" data-match="Kilmarnock FC vs Dundee FC" data-selection="BTTS Yes" data-odds="1.71" data-bk="Stake"><span class="ab-px-label">BTTS Yes</span><span class="ab-px-odds" data-decimal="1.71">1.71</span></button>
-      <button class="ab-px" data-event="70674932" data-market="btts" data-outcome="no" data-match="Kilmarnock FC vs Dundee FC" data-selection="BTTS No" data-odds="2.11" data-bk="1xbet"><span class="ab-px-label">BTTS No</span><span class="ab-px-odds" data-decimal="2.11">2.11</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">O/U 2.5</span>
-      <button class="ab-px" data-event="70674932" data-market="over_25" data-outcome="over" data-match="Kilmarnock FC vs Dundee FC" data-selection="Over 2.5" data-odds="1.79" data-bk="Stake"><span class="ab-px-label">Over 2.5</span><span class="ab-px-odds" data-decimal="1.79">1.79</span></button>
-      <button class="ab-px" data-event="70674932" data-market="over_25" data-outcome="under" data-match="Kilmarnock FC vs Dundee FC" data-selection="Under 2.5" data-odds="2.0" data-bk="1xbet"><span class="ab-px-label">Under 2.5</span><span class="ab-px-odds" data-decimal="2.0">2.0</span></button>
-    </div>
+    <button class="ab-mkt ab-px" data-event="70674932" data-market="ml" data-outcome="home" data-match="Kilmarnock FC vs Dundee FC" data-selection="Kilmarnock FC" data-odds="1.95" data-bk="Stake"><span class="label">Kilmarnock FC</span><span class="px ab-px-odds" data-decimal="1.95">1.95</span></button>
+    <button class="ab-mkt ab-px" data-event="70674932" data-market="ml" data-outcome="draw" data-match="Kilmarnock FC vs Dundee FC" data-selection="Draw" data-odds="3.7" data-bk="Stake"><span class="label">Draw</span><span class="px ab-px-odds" data-decimal="3.7">3.7</span></button>
+    <button class="ab-mkt ab-px" data-event="70674932" data-market="ml" data-outcome="away" data-match="Kilmarnock FC vs Dundee FC" data-selection="Dundee FC" data-odds="3.85" data-bk="1xbet"><span class="label">Dundee FC</span><span class="px ab-px-odds" data-decimal="3.85">3.85</span></button>
+    <button class="ab-mkt ab-px" data-event="70674932" data-market="btts" data-outcome="yes" data-match="Kilmarnock FC vs Dundee FC" data-selection="BTTS Yes" data-odds="1.71" data-bk="Stake"><span class="label">BTTS Yes</span><span class="px ab-px-odds" data-decimal="1.71">1.71</span></button>
+    <button class="ab-mkt ab-px" data-event="70674932" data-market="btts" data-outcome="no" data-match="Kilmarnock FC vs Dundee FC" data-selection="BTTS No" data-odds="2.11" data-bk="1xbet"><span class="label">BTTS No</span><span class="px ab-px-odds" data-decimal="2.11">2.11</span></button>
+    <button class="ab-mkt ab-px" data-event="70674932" data-market="over_25" data-outcome="over" data-match="Kilmarnock FC vs Dundee FC" data-selection="Over 2.5" data-odds="1.79" data-bk="Stake"><span class="label">Over 2.5</span><span class="px ab-px-odds" data-decimal="1.79">1.79</span></button>
+    <button class="ab-mkt ab-px" data-event="70674932" data-market="over_25" data-outcome="under" data-match="Kilmarnock FC vs Dundee FC" data-selection="Under 2.5" data-odds="2.0" data-bk="1xbet"><span class="label">Under 2.5</span><span class="px ab-px-odds" data-decimal="2.0">2.0</span></button>
   </div>
 </div>
 <div class="ab-row">
   <div class="ab-meta">
-    <span class="ab-league">France - Ligue 1</span>
-    <span class="ab-time" data-utc="2026-05-13T17:00:00Z">Wed 13 May · 17:00</span>
+    <span>France - Ligue 1</span>
+    <span data-utc="2026-05-13T17:00:00Z">Wed 13 May · 17:00</span>
   </div>
-  <div class="ab-teams">Stade Brest 29 <small>vs</small> Strasbourg Alsace</div>
+  <div class="ab-teams">Stade Brest 29 vs Strasbourg Alsace</div>
   <div class="ab-markets">
-    <div class="ab-mkt"><span class="ab-mkt-label">1X2</span>
-      <button class="ab-px" data-event="70315368" data-market="ml" data-outcome="home" data-match="Stade Brest 29 vs Strasbourg Alsace" data-selection="Stade Brest 29 Win" data-odds="2.824" data-bk="1xbet"><span class="ab-px-label">Stade Brest 29 Win</span><span class="ab-px-odds" data-decimal="2.824">2.824</span></button>
-      <button class="ab-px" data-event="70315368" data-market="ml" data-outcome="draw" data-match="Stade Brest 29 vs Strasbourg Alsace" data-selection="Draw" data-odds="3.635" data-bk="1xbet"><span class="ab-px-label">Draw</span><span class="ab-px-odds" data-decimal="3.635">3.635</span></button>
-      <button class="ab-px" data-event="70315368" data-market="ml" data-outcome="away" data-match="Stade Brest 29 vs Strasbourg Alsace" data-selection="Strasbourg Alsace Win" data-odds="2.59" data-bk="1xbet"><span class="ab-px-label">Strasbourg Alsace Win</span><span class="ab-px-odds" data-decimal="2.59">2.59</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">BTTS</span>
-      <button class="ab-px" data-event="70315368" data-market="btts" data-outcome="yes" data-match="Stade Brest 29 vs Strasbourg Alsace" data-selection="BTTS Yes" data-odds="1.63" data-bk="Stake"><span class="ab-px-label">BTTS Yes</span><span class="ab-px-odds" data-decimal="1.63">1.63</span></button>
-      <button class="ab-px" data-event="70315368" data-market="btts" data-outcome="no" data-match="Stade Brest 29 vs Strasbourg Alsace" data-selection="BTTS No" data-odds="2.24" data-bk="1xbet"><span class="ab-px-label">BTTS No</span><span class="ab-px-odds" data-decimal="2.24">2.24</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">O/U 2.5</span>
-      <button class="ab-px" data-event="70315368" data-market="over_25" data-outcome="over" data-match="Stade Brest 29 vs Strasbourg Alsace" data-selection="Over 2.5" data-odds="1.836" data-bk="1xbet"><span class="ab-px-label">Over 2.5</span><span class="ab-px-odds" data-decimal="1.836">1.836</span></button>
-      <button class="ab-px" data-event="70315368" data-market="over_25" data-outcome="under" data-match="Stade Brest 29 vs Strasbourg Alsace" data-selection="Under 2.5" data-odds="2.125" data-bk="1xbet"><span class="ab-px-label">Under 2.5</span><span class="ab-px-odds" data-decimal="2.125">2.125</span></button>
-    </div>
+    <button class="ab-mkt ab-px" data-event="70315368" data-market="ml" data-outcome="home" data-match="Stade Brest 29 vs Strasbourg Alsace" data-selection="Stade Brest 29" data-odds="2.824" data-bk="1xbet"><span class="label">Stade Brest 29</span><span class="px ab-px-odds" data-decimal="2.824">2.824</span></button>
+    <button class="ab-mkt ab-px" data-event="70315368" data-market="ml" data-outcome="draw" data-match="Stade Brest 29 vs Strasbourg Alsace" data-selection="Draw" data-odds="3.635" data-bk="1xbet"><span class="label">Draw</span><span class="px ab-px-odds" data-decimal="3.635">3.635</span></button>
+    <button class="ab-mkt ab-px" data-event="70315368" data-market="ml" data-outcome="away" data-match="Stade Brest 29 vs Strasbourg Alsace" data-selection="Strasbourg Alsace" data-odds="2.59" data-bk="1xbet"><span class="label">Strasbourg Alsace</span><span class="px ab-px-odds" data-decimal="2.59">2.59</span></button>
+    <button class="ab-mkt ab-px" data-event="70315368" data-market="btts" data-outcome="yes" data-match="Stade Brest 29 vs Strasbourg Alsace" data-selection="BTTS Yes" data-odds="1.63" data-bk="Stake"><span class="label">BTTS Yes</span><span class="px ab-px-odds" data-decimal="1.63">1.63</span></button>
+    <button class="ab-mkt ab-px" data-event="70315368" data-market="btts" data-outcome="no" data-match="Stade Brest 29 vs Strasbourg Alsace" data-selection="BTTS No" data-odds="2.24" data-bk="1xbet"><span class="label">BTTS No</span><span class="px ab-px-odds" data-decimal="2.24">2.24</span></button>
+    <button class="ab-mkt ab-px" data-event="70315368" data-market="over_25" data-outcome="over" data-match="Stade Brest 29 vs Strasbourg Alsace" data-selection="Over 2.5" data-odds="1.836" data-bk="1xbet"><span class="label">Over 2.5</span><span class="px ab-px-odds" data-decimal="1.836">1.836</span></button>
+    <button class="ab-mkt ab-px" data-event="70315368" data-market="over_25" data-outcome="under" data-match="Stade Brest 29 vs Strasbourg Alsace" data-selection="Under 2.5" data-odds="2.125" data-bk="1xbet"><span class="label">Under 2.5</span><span class="px ab-px-odds" data-decimal="2.125">2.125</span></button>
   </div>
 </div>
 <div class="ab-row">
   <div class="ab-meta">
-    <span class="ab-league">Netherlands - Eredivisie</span>
-    <span class="ab-time" data-utc="2026-05-13T18:00:00Z">Wed 13 May · 18:00</span>
+    <span>Netherlands - Eredivisie</span>
+    <span data-utc="2026-05-13T18:00:00Z">Wed 13 May · 18:00</span>
   </div>
-  <div class="ab-teams">Almere City FC <small>vs</small> Willem II Tilburg</div>
+  <div class="ab-teams">Almere City FC vs Willem II Tilburg</div>
   <div class="ab-markets">
-    <div class="ab-mkt"><span class="ab-mkt-label">1X2</span>
-      <button class="ab-px" data-event="71412168" data-market="ml" data-outcome="home" data-match="Almere City FC vs Willem II Tilburg" data-selection="Almere City FC Win" data-odds="2.16" data-bk="Stake"><span class="ab-px-label">Almere City FC Win</span><span class="ab-px-odds" data-decimal="2.16">2.16</span></button>
-      <button class="ab-px" data-event="71412168" data-market="ml" data-outcome="draw" data-match="Almere City FC vs Willem II Tilburg" data-selection="Draw" data-odds="3.75" data-bk="Stake"><span class="ab-px-label">Draw</span><span class="ab-px-odds" data-decimal="3.75">3.75</span></button>
-      <button class="ab-px" data-event="71412168" data-market="ml" data-outcome="away" data-match="Almere City FC vs Willem II Tilburg" data-selection="Willem II Tilburg Win" data-odds="3.0" data-bk="Stake"><span class="ab-px-label">Willem II Tilburg Win</span><span class="ab-px-odds" data-decimal="3.0">3.0</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">BTTS</span>
-      <button class="ab-px is-disabled" disabled>—</button>
-      <button class="ab-px is-disabled" disabled>—</button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">O/U 2.5</span>
-      <button class="ab-px is-disabled" disabled>—</button>
-      <button class="ab-px is-disabled" disabled>—</button>
-    </div>
+    <button class="ab-mkt ab-px" data-event="71412168" data-market="ml" data-outcome="home" data-match="Almere City FC vs Willem II Tilburg" data-selection="Almere City FC" data-odds="2.16" data-bk="Stake"><span class="label">Almere City FC</span><span class="px ab-px-odds" data-decimal="2.16">2.16</span></button>
+    <button class="ab-mkt ab-px" data-event="71412168" data-market="ml" data-outcome="draw" data-match="Almere City FC vs Willem II Tilburg" data-selection="Draw" data-odds="3.75" data-bk="Stake"><span class="label">Draw</span><span class="px ab-px-odds" data-decimal="3.75">3.75</span></button>
+    <button class="ab-mkt ab-px" data-event="71412168" data-market="ml" data-outcome="away" data-match="Almere City FC vs Willem II Tilburg" data-selection="Willem II Tilburg" data-odds="3.0" data-bk="Stake"><span class="label">Willem II Tilburg</span><span class="px ab-px-odds" data-decimal="3.0">3.0</span></button>
+    <button class="ab-mkt ab-px is-disabled" disabled><span class="label">BTTS Yes</span><span class="px">—</span></button>
+    <button class="ab-mkt ab-px is-disabled" disabled><span class="label">BTTS No</span><span class="px">—</span></button>
+    <button class="ab-mkt ab-px is-disabled" disabled><span class="label">Over 2.5</span><span class="px">—</span></button>
+    <button class="ab-mkt ab-px is-disabled" disabled><span class="label">Under 2.5</span><span class="px">—</span></button>
   </div>
 </div>
 <div class="ab-row">
   <div class="ab-meta">
-    <span class="ab-league">England - Premier League</span>
-    <span class="ab-time" data-utc="2026-05-13T19:00:00Z">Wed 13 May · 19:00</span>
+    <span>England - Premier League</span>
+    <span data-utc="2026-05-13T19:00:00Z">Wed 13 May · 19:00</span>
   </div>
-  <div class="ab-teams">Manchester City <small>vs</small> Crystal Palace</div>
+  <div class="ab-teams">Manchester City vs Crystal Palace</div>
   <div class="ab-markets">
-    <div class="ab-mkt"><span class="ab-mkt-label">1X2</span>
-      <button class="ab-px" data-event="70784812" data-market="ml" data-outcome="home" data-match="Manchester City vs Crystal Palace" data-selection="Manchester City Win" data-odds="1.214" data-bk="1xbet"><span class="ab-px-label">Manchester City Win</span><span class="ab-px-odds" data-decimal="1.214">1.214</span></button>
-      <button class="ab-px" data-event="70784812" data-market="ml" data-outcome="draw" data-match="Manchester City vs Crystal Palace" data-selection="Draw" data-odds="7.8" data-bk="1xbet"><span class="ab-px-label">Draw</span><span class="ab-px-odds" data-decimal="7.8">7.8</span></button>
-      <button class="ab-px" data-event="70784812" data-market="ml" data-outcome="away" data-match="Manchester City vs Crystal Palace" data-selection="Crystal Palace Win" data-odds="15.5" data-bk="1xbet"><span class="ab-px-label">Crystal Palace Win</span><span class="ab-px-odds" data-decimal="15.5">15.5</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">BTTS</span>
-      <button class="ab-px" data-event="70784812" data-market="btts" data-outcome="yes" data-match="Manchester City vs Crystal Palace" data-selection="BTTS Yes" data-odds="2.01" data-bk="Stake"><span class="ab-px-label">BTTS Yes</span><span class="ab-px-odds" data-decimal="2.01">2.01</span></button>
-      <button class="ab-px" data-event="70784812" data-market="btts" data-outcome="no" data-match="Manchester City vs Crystal Palace" data-selection="BTTS No" data-odds="1.78" data-bk="Stake"><span class="ab-px-label">BTTS No</span><span class="ab-px-odds" data-decimal="1.78">1.78</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">O/U 2.5</span>
-      <button class="ab-px" data-event="70784812" data-market="over_25" data-outcome="over" data-match="Manchester City vs Crystal Palace" data-selection="Over 2.5" data-odds="1.42" data-bk="Stake"><span class="ab-px-label">Over 2.5</span><span class="ab-px-odds" data-decimal="1.42">1.42</span></button>
-      <button class="ab-px" data-event="70784812" data-market="over_25" data-outcome="under" data-match="Manchester City vs Crystal Palace" data-selection="Under 2.5" data-odds="2.86" data-bk="Rainbet"><span class="ab-px-label">Under 2.5</span><span class="ab-px-odds" data-decimal="2.86">2.86</span></button>
-    </div>
+    <button class="ab-mkt ab-px" data-event="70784812" data-market="ml" data-outcome="home" data-match="Manchester City vs Crystal Palace" data-selection="Manchester City" data-odds="1.214" data-bk="1xbet"><span class="label">Manchester City</span><span class="px ab-px-odds" data-decimal="1.214">1.214</span></button>
+    <button class="ab-mkt ab-px" data-event="70784812" data-market="ml" data-outcome="draw" data-match="Manchester City vs Crystal Palace" data-selection="Draw" data-odds="7.8" data-bk="1xbet"><span class="label">Draw</span><span class="px ab-px-odds" data-decimal="7.8">7.8</span></button>
+    <button class="ab-mkt ab-px" data-event="70784812" data-market="ml" data-outcome="away" data-match="Manchester City vs Crystal Palace" data-selection="Crystal Palace" data-odds="15.5" data-bk="1xbet"><span class="label">Crystal Palace</span><span class="px ab-px-odds" data-decimal="15.5">15.5</span></button>
+    <button class="ab-mkt ab-px" data-event="70784812" data-market="btts" data-outcome="yes" data-match="Manchester City vs Crystal Palace" data-selection="BTTS Yes" data-odds="2.01" data-bk="Stake"><span class="label">BTTS Yes</span><span class="px ab-px-odds" data-decimal="2.01">2.01</span></button>
+    <button class="ab-mkt ab-px" data-event="70784812" data-market="btts" data-outcome="no" data-match="Manchester City vs Crystal Palace" data-selection="BTTS No" data-odds="1.78" data-bk="Stake"><span class="label">BTTS No</span><span class="px ab-px-odds" data-decimal="1.78">1.78</span></button>
+    <button class="ab-mkt ab-px" data-event="70784812" data-market="over_25" data-outcome="over" data-match="Manchester City vs Crystal Palace" data-selection="Over 2.5" data-odds="1.42" data-bk="Stake"><span class="label">Over 2.5</span><span class="px ab-px-odds" data-decimal="1.42">1.42</span></button>
+    <button class="ab-mkt ab-px" data-event="70784812" data-market="over_25" data-outcome="under" data-match="Manchester City vs Crystal Palace" data-selection="Under 2.5" data-odds="2.86" data-bk="Rainbet"><span class="label">Under 2.5</span><span class="px ab-px-odds" data-decimal="2.86">2.86</span></button>
   </div>
 </div>
 <div class="ab-row">
   <div class="ab-meta">
-    <span class="ab-league">France - Ligue 1</span>
-    <span class="ab-time" data-utc="2026-05-13T19:00:00Z">Wed 13 May · 19:00</span>
+    <span>France - Ligue 1</span>
+    <span data-utc="2026-05-13T19:00:00Z">Wed 13 May · 19:00</span>
   </div>
-  <div class="ab-teams">Racing Club De Lens <small>vs</small> Paris Saint-Germain</div>
+  <div class="ab-teams">Racing Club De Lens vs Paris Saint-Germain</div>
   <div class="ab-markets">
-    <div class="ab-mkt"><span class="ab-mkt-label">1X2</span>
-      <button class="ab-px" data-event="70315360" data-market="ml" data-outcome="home" data-match="Racing Club De Lens vs Paris Saint-Germain" data-selection="Racing Club De Lens Win" data-odds="3.575" data-bk="1xbet"><span class="ab-px-label">Racing Club De Lens Win</span><span class="ab-px-odds" data-decimal="3.575">3.575</span></button>
-      <button class="ab-px" data-event="70315360" data-market="ml" data-outcome="draw" data-match="Racing Club De Lens vs Paris Saint-Germain" data-selection="Draw" data-odds="4.015" data-bk="1xbet"><span class="ab-px-label">Draw</span><span class="ab-px-odds" data-decimal="4.015">4.015</span></button>
-      <button class="ab-px" data-event="70315360" data-market="ml" data-outcome="away" data-match="Racing Club De Lens vs Paris Saint-Germain" data-selection="Paris Saint-Germain Win" data-odds="2.054" data-bk="1xbet"><span class="ab-px-label">Paris Saint-Germain Win</span><span class="ab-px-odds" data-decimal="2.054">2.054</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">BTTS</span>
-      <button class="ab-px" data-event="70315360" data-market="btts" data-outcome="yes" data-match="Racing Club De Lens vs Paris Saint-Germain" data-selection="BTTS Yes" data-odds="1.48" data-bk="Stake"><span class="ab-px-label">BTTS Yes</span><span class="ab-px-odds" data-decimal="1.48">1.48</span></button>
-      <button class="ab-px" data-event="70315360" data-market="btts" data-outcome="no" data-match="Racing Club De Lens vs Paris Saint-Germain" data-selection="BTTS No" data-odds="2.622" data-bk="1xbet"><span class="ab-px-label">BTTS No</span><span class="ab-px-odds" data-decimal="2.622">2.622</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">O/U 2.5</span>
-      <button class="ab-px" data-event="70315360" data-market="over_25" data-outcome="over" data-match="Racing Club De Lens vs Paris Saint-Germain" data-selection="Over 2.5" data-odds="1.5" data-bk="Stake"><span class="ab-px-label">Over 2.5</span><span class="ab-px-odds" data-decimal="1.5">1.5</span></button>
-      <button class="ab-px" data-event="70315360" data-market="over_25" data-outcome="under" data-match="Racing Club De Lens vs Paris Saint-Germain" data-selection="Under 2.5" data-odds="2.55" data-bk="Stake"><span class="ab-px-label">Under 2.5</span><span class="ab-px-odds" data-decimal="2.55">2.55</span></button>
-    </div>
+    <button class="ab-mkt ab-px" data-event="70315360" data-market="ml" data-outcome="home" data-match="Racing Club De Lens vs Paris Saint-Germain" data-selection="Racing Club De Lens" data-odds="3.575" data-bk="1xbet"><span class="label">Racing Club De Lens</span><span class="px ab-px-odds" data-decimal="3.575">3.575</span></button>
+    <button class="ab-mkt ab-px" data-event="70315360" data-market="ml" data-outcome="draw" data-match="Racing Club De Lens vs Paris Saint-Germain" data-selection="Draw" data-odds="4.015" data-bk="1xbet"><span class="label">Draw</span><span class="px ab-px-odds" data-decimal="4.015">4.015</span></button>
+    <button class="ab-mkt ab-px" data-event="70315360" data-market="ml" data-outcome="away" data-match="Racing Club De Lens vs Paris Saint-Germain" data-selection="Paris Saint-Germain" data-odds="2.054" data-bk="1xbet"><span class="label">Paris Saint-Germain</span><span class="px ab-px-odds" data-decimal="2.054">2.054</span></button>
+    <button class="ab-mkt ab-px" data-event="70315360" data-market="btts" data-outcome="yes" data-match="Racing Club De Lens vs Paris Saint-Germain" data-selection="BTTS Yes" data-odds="1.48" data-bk="Stake"><span class="label">BTTS Yes</span><span class="px ab-px-odds" data-decimal="1.48">1.48</span></button>
+    <button class="ab-mkt ab-px" data-event="70315360" data-market="btts" data-outcome="no" data-match="Racing Club De Lens vs Paris Saint-Germain" data-selection="BTTS No" data-odds="2.622" data-bk="1xbet"><span class="label">BTTS No</span><span class="px ab-px-odds" data-decimal="2.622">2.622</span></button>
+    <button class="ab-mkt ab-px" data-event="70315360" data-market="over_25" data-outcome="over" data-match="Racing Club De Lens vs Paris Saint-Germain" data-selection="Over 2.5" data-odds="1.5" data-bk="Stake"><span class="label">Over 2.5</span><span class="px ab-px-odds" data-decimal="1.5">1.5</span></button>
+    <button class="ab-mkt ab-px" data-event="70315360" data-market="over_25" data-outcome="under" data-match="Racing Club De Lens vs Paris Saint-Germain" data-selection="Under 2.5" data-odds="2.55" data-bk="Stake"><span class="label">Under 2.5</span><span class="px ab-px-odds" data-decimal="2.55">2.55</span></button>
   </div>
 </div>
 <div class="ab-row">
   <div class="ab-meta">
-    <span class="ab-league">Scotland - Premiership</span>
-    <span class="ab-time" data-utc="2026-05-13T19:00:00Z">Wed 13 May · 19:00</span>
+    <span>Scotland - Premiership</span>
+    <span data-utc="2026-05-13T19:00:00Z">Wed 13 May · 19:00</span>
   </div>
-  <div class="ab-teams">Heart of Midlothian FC <small>vs</small> Falkirk FC</div>
+  <div class="ab-teams">Heart of Midlothian FC vs Falkirk FC</div>
   <div class="ab-markets">
-    <div class="ab-mkt"><span class="ab-mkt-label">1X2</span>
-      <button class="ab-px" data-event="70674826" data-market="ml" data-outcome="home" data-match="Heart of Midlothian FC vs Falkirk FC" data-selection="Heart of Midlothian FC Win" data-odds="1.444" data-bk="Bet365"><span class="ab-px-label">Heart of Midlothian FC Win</span><span class="ab-px-odds" data-decimal="1.444">1.444</span></button>
-      <button class="ab-px" data-event="70674826" data-market="ml" data-outcome="draw" data-match="Heart of Midlothian FC vs Falkirk FC" data-selection="Draw" data-odds="4.9" data-bk="Stake"><span class="ab-px-label">Draw</span><span class="ab-px-odds" data-decimal="4.9">4.9</span></button>
-      <button class="ab-px" data-event="70674826" data-market="ml" data-outcome="away" data-match="Heart of Midlothian FC vs Falkirk FC" data-selection="Falkirk FC Win" data-odds="7.2" data-bk="Stake"><span class="ab-px-label">Falkirk FC Win</span><span class="ab-px-odds" data-decimal="7.2">7.2</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">BTTS</span>
-      <button class="ab-px" data-event="70674826" data-market="btts" data-outcome="yes" data-match="Heart of Midlothian FC vs Falkirk FC" data-selection="BTTS Yes" data-odds="1.909" data-bk="Bet365"><span class="ab-px-label">BTTS Yes</span><span class="ab-px-odds" data-decimal="1.909">1.909</span></button>
-      <button class="ab-px" data-event="70674826" data-market="btts" data-outcome="no" data-match="Heart of Midlothian FC vs Falkirk FC" data-selection="BTTS No" data-odds="1.909" data-bk="Bet365"><span class="ab-px-label">BTTS No</span><span class="ab-px-odds" data-decimal="1.909">1.909</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">O/U 2.5</span>
-      <button class="ab-px" data-event="70674826" data-market="over_25" data-outcome="over" data-match="Heart of Midlothian FC vs Falkirk FC" data-selection="Over 2.5" data-odds="1.68" data-bk="1xbet"><span class="ab-px-label">Over 2.5</span><span class="ab-px-odds" data-decimal="1.68">1.68</span></button>
-      <button class="ab-px" data-event="70674826" data-market="over_25" data-outcome="under" data-match="Heart of Midlothian FC vs Falkirk FC" data-selection="Under 2.5" data-odds="2.17" data-bk="Stake"><span class="ab-px-label">Under 2.5</span><span class="ab-px-odds" data-decimal="2.17">2.17</span></button>
-    </div>
+    <button class="ab-mkt ab-px" data-event="70674826" data-market="ml" data-outcome="home" data-match="Heart of Midlothian FC vs Falkirk FC" data-selection="Heart of Midlothian FC" data-odds="1.444" data-bk="Bet365"><span class="label">Heart of Midlothian FC</span><span class="px ab-px-odds" data-decimal="1.444">1.444</span></button>
+    <button class="ab-mkt ab-px" data-event="70674826" data-market="ml" data-outcome="draw" data-match="Heart of Midlothian FC vs Falkirk FC" data-selection="Draw" data-odds="4.9" data-bk="Stake"><span class="label">Draw</span><span class="px ab-px-odds" data-decimal="4.9">4.9</span></button>
+    <button class="ab-mkt ab-px" data-event="70674826" data-market="ml" data-outcome="away" data-match="Heart of Midlothian FC vs Falkirk FC" data-selection="Falkirk FC" data-odds="7.2" data-bk="Stake"><span class="label">Falkirk FC</span><span class="px ab-px-odds" data-decimal="7.2">7.2</span></button>
+    <button class="ab-mkt ab-px" data-event="70674826" data-market="btts" data-outcome="yes" data-match="Heart of Midlothian FC vs Falkirk FC" data-selection="BTTS Yes" data-odds="1.909" data-bk="Bet365"><span class="label">BTTS Yes</span><span class="px ab-px-odds" data-decimal="1.909">1.909</span></button>
+    <button class="ab-mkt ab-px" data-event="70674826" data-market="btts" data-outcome="no" data-match="Heart of Midlothian FC vs Falkirk FC" data-selection="BTTS No" data-odds="1.909" data-bk="Bet365"><span class="label">BTTS No</span><span class="px ab-px-odds" data-decimal="1.909">1.909</span></button>
+    <button class="ab-mkt ab-px" data-event="70674826" data-market="over_25" data-outcome="over" data-match="Heart of Midlothian FC vs Falkirk FC" data-selection="Over 2.5" data-odds="1.68" data-bk="1xbet"><span class="label">Over 2.5</span><span class="px ab-px-odds" data-decimal="1.68">1.68</span></button>
+    <button class="ab-mkt ab-px" data-event="70674826" data-market="over_25" data-outcome="under" data-match="Heart of Midlothian FC vs Falkirk FC" data-selection="Under 2.5" data-odds="2.17" data-bk="Stake"><span class="label">Under 2.5</span><span class="px ab-px-odds" data-decimal="2.17">2.17</span></button>
   </div>
 </div>
 <div class="ab-row">
   <div class="ab-meta">
-    <span class="ab-league">Scotland - Premiership</span>
-    <span class="ab-time" data-utc="2026-05-13T19:00:00Z">Wed 13 May · 19:00</span>
+    <span>Scotland - Premiership</span>
+    <span data-utc="2026-05-13T19:00:00Z">Wed 13 May · 19:00</span>
   </div>
-  <div class="ab-teams">Motherwell FC <small>vs</small> Celtic Glasgow</div>
+  <div class="ab-teams">Motherwell FC vs Celtic Glasgow</div>
   <div class="ab-markets">
-    <div class="ab-mkt"><span class="ab-mkt-label">1X2</span>
-      <button class="ab-px" data-event="70674828" data-market="ml" data-outcome="home" data-match="Motherwell FC vs Celtic Glasgow" data-selection="Motherwell FC Win" data-odds="4.0" data-bk="Stake"><span class="ab-px-label">Motherwell FC Win</span><span class="ab-px-odds" data-decimal="4.0">4.0</span></button>
-      <button class="ab-px" data-event="70674828" data-market="ml" data-outcome="draw" data-match="Motherwell FC vs Celtic Glasgow" data-selection="Draw" data-odds="4.1" data-bk="Stake"><span class="ab-px-label">Draw</span><span class="ab-px-odds" data-decimal="4.1">4.1</span></button>
-      <button class="ab-px" data-event="70674828" data-market="ml" data-outcome="away" data-match="Motherwell FC vs Celtic Glasgow" data-selection="Celtic Glasgow Win" data-odds="1.84" data-bk="Stake"><span class="ab-px-label">Celtic Glasgow Win</span><span class="ab-px-odds" data-decimal="1.84">1.84</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">BTTS</span>
-      <button class="ab-px" data-event="70674828" data-market="btts" data-outcome="yes" data-match="Motherwell FC vs Celtic Glasgow" data-selection="BTTS Yes" data-odds="1.55" data-bk="Stake"><span class="ab-px-label">BTTS Yes</span><span class="ab-px-odds" data-decimal="1.55">1.55</span></button>
-      <button class="ab-px" data-event="70674828" data-market="btts" data-outcome="no" data-match="Motherwell FC vs Celtic Glasgow" data-selection="BTTS No" data-odds="2.41" data-bk="Stake"><span class="ab-px-label">BTTS No</span><span class="ab-px-odds" data-decimal="2.41">2.41</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">O/U 2.5</span>
-      <button class="ab-px" data-event="70674828" data-market="over_25" data-outcome="over" data-match="Motherwell FC vs Celtic Glasgow" data-selection="Over 2.5" data-odds="1.55" data-bk="Stake"><span class="ab-px-label">Over 2.5</span><span class="ab-px-odds" data-decimal="1.55">1.55</span></button>
-      <button class="ab-px" data-event="70674828" data-market="over_25" data-outcome="under" data-match="Motherwell FC vs Celtic Glasgow" data-selection="Under 2.5" data-odds="2.41" data-bk="Stake"><span class="ab-px-label">Under 2.5</span><span class="ab-px-odds" data-decimal="2.41">2.41</span></button>
-    </div>
+    <button class="ab-mkt ab-px" data-event="70674828" data-market="ml" data-outcome="home" data-match="Motherwell FC vs Celtic Glasgow" data-selection="Motherwell FC" data-odds="4.0" data-bk="Stake"><span class="label">Motherwell FC</span><span class="px ab-px-odds" data-decimal="4.0">4.0</span></button>
+    <button class="ab-mkt ab-px" data-event="70674828" data-market="ml" data-outcome="draw" data-match="Motherwell FC vs Celtic Glasgow" data-selection="Draw" data-odds="4.1" data-bk="Stake"><span class="label">Draw</span><span class="px ab-px-odds" data-decimal="4.1">4.1</span></button>
+    <button class="ab-mkt ab-px" data-event="70674828" data-market="ml" data-outcome="away" data-match="Motherwell FC vs Celtic Glasgow" data-selection="Celtic Glasgow" data-odds="1.84" data-bk="Stake"><span class="label">Celtic Glasgow</span><span class="px ab-px-odds" data-decimal="1.84">1.84</span></button>
+    <button class="ab-mkt ab-px" data-event="70674828" data-market="btts" data-outcome="yes" data-match="Motherwell FC vs Celtic Glasgow" data-selection="BTTS Yes" data-odds="1.55" data-bk="Stake"><span class="label">BTTS Yes</span><span class="px ab-px-odds" data-decimal="1.55">1.55</span></button>
+    <button class="ab-mkt ab-px" data-event="70674828" data-market="btts" data-outcome="no" data-match="Motherwell FC vs Celtic Glasgow" data-selection="BTTS No" data-odds="2.41" data-bk="Stake"><span class="label">BTTS No</span><span class="px ab-px-odds" data-decimal="2.41">2.41</span></button>
+    <button class="ab-mkt ab-px" data-event="70674828" data-market="over_25" data-outcome="over" data-match="Motherwell FC vs Celtic Glasgow" data-selection="Over 2.5" data-odds="1.55" data-bk="Stake"><span class="label">Over 2.5</span><span class="px ab-px-odds" data-decimal="1.55">1.55</span></button>
+    <button class="ab-mkt ab-px" data-event="70674828" data-market="over_25" data-outcome="under" data-match="Motherwell FC vs Celtic Glasgow" data-selection="Under 2.5" data-odds="2.41" data-bk="Stake"><span class="label">Under 2.5</span><span class="px ab-px-odds" data-decimal="2.41">2.41</span></button>
   </div>
 </div>
 <div class="ab-row">
   <div class="ab-meta">
-    <span class="ab-league">Scotland - Premiership</span>
-    <span class="ab-time" data-utc="2026-05-13T19:00:00Z">Wed 13 May · 19:00</span>
+    <span>Scotland - Premiership</span>
+    <span data-utc="2026-05-13T19:00:00Z">Wed 13 May · 19:00</span>
   </div>
-  <div class="ab-teams">Glasgow Rangers <small>vs</small> Hibernian FC</div>
+  <div class="ab-teams">Glasgow Rangers vs Hibernian FC</div>
   <div class="ab-markets">
-    <div class="ab-mkt"><span class="ab-mkt-label">1X2</span>
-      <button class="ab-px" data-event="70674830" data-market="ml" data-outcome="home" data-match="Glasgow Rangers vs Hibernian FC" data-selection="Glasgow Rangers Win" data-odds="1.52" data-bk="Stake"><span class="ab-px-label">Glasgow Rangers Win</span><span class="ab-px-odds" data-decimal="1.52">1.52</span></button>
-      <button class="ab-px" data-event="70674830" data-market="ml" data-outcome="draw" data-match="Glasgow Rangers vs Hibernian FC" data-selection="Draw" data-odds="4.8" data-bk="Stake"><span class="ab-px-label">Draw</span><span class="ab-px-odds" data-decimal="4.8">4.8</span></button>
-      <button class="ab-px" data-event="70674830" data-market="ml" data-outcome="away" data-match="Glasgow Rangers vs Hibernian FC" data-selection="Hibernian FC Win" data-odds="5.8" data-bk="Stake"><span class="ab-px-label">Hibernian FC Win</span><span class="ab-px-odds" data-decimal="5.8">5.8</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">BTTS</span>
-      <button class="ab-px" data-event="70674830" data-market="btts" data-outcome="yes" data-match="Glasgow Rangers vs Hibernian FC" data-selection="BTTS Yes" data-odds="1.7" data-bk="Bet365"><span class="ab-px-label">BTTS Yes</span><span class="ab-px-odds" data-decimal="1.7">1.7</span></button>
-      <button class="ab-px" data-event="70674830" data-market="btts" data-outcome="no" data-match="Glasgow Rangers vs Hibernian FC" data-selection="BTTS No" data-odds="2.11" data-bk="1xbet"><span class="ab-px-label">BTTS No</span><span class="ab-px-odds" data-decimal="2.11">2.11</span></button>
-    </div>
-    <div class="ab-mkt"><span class="ab-mkt-label">O/U 2.5</span>
-      <button class="ab-px" data-event="70674830" data-market="over_25" data-outcome="over" data-match="Glasgow Rangers vs Hibernian FC" data-selection="Over 2.5" data-odds="1.56" data-bk="Stake"><span class="ab-px-label">Over 2.5</span><span class="ab-px-odds" data-decimal="1.56">1.56</span></button>
-      <button class="ab-px" data-event="70674830" data-market="over_25" data-outcome="under" data-match="Glasgow Rangers vs Hibernian FC" data-selection="Under 2.5" data-odds="2.38" data-bk="Rainbet"><span class="ab-px-label">Under 2.5</span><span class="ab-px-odds" data-decimal="2.38">2.38</span></button>
-    </div>
+    <button class="ab-mkt ab-px" data-event="70674830" data-market="ml" data-outcome="home" data-match="Glasgow Rangers vs Hibernian FC" data-selection="Glasgow Rangers" data-odds="1.52" data-bk="Stake"><span class="label">Glasgow Rangers</span><span class="px ab-px-odds" data-decimal="1.52">1.52</span></button>
+    <button class="ab-mkt ab-px" data-event="70674830" data-market="ml" data-outcome="draw" data-match="Glasgow Rangers vs Hibernian FC" data-selection="Draw" data-odds="4.8" data-bk="Stake"><span class="label">Draw</span><span class="px ab-px-odds" data-decimal="4.8">4.8</span></button>
+    <button class="ab-mkt ab-px" data-event="70674830" data-market="ml" data-outcome="away" data-match="Glasgow Rangers vs Hibernian FC" data-selection="Hibernian FC" data-odds="5.8" data-bk="Stake"><span class="label">Hibernian FC</span><span class="px ab-px-odds" data-decimal="5.8">5.8</span></button>
+    <button class="ab-mkt ab-px" data-event="70674830" data-market="btts" data-outcome="yes" data-match="Glasgow Rangers vs Hibernian FC" data-selection="BTTS Yes" data-odds="1.7" data-bk="Bet365"><span class="label">BTTS Yes</span><span class="px ab-px-odds" data-decimal="1.7">1.7</span></button>
+    <button class="ab-mkt ab-px" data-event="70674830" data-market="btts" data-outcome="no" data-match="Glasgow Rangers vs Hibernian FC" data-selection="BTTS No" data-odds="2.11" data-bk="1xbet"><span class="label">BTTS No</span><span class="px ab-px-odds" data-decimal="2.11">2.11</span></button>
+    <button class="ab-mkt ab-px" data-event="70674830" data-market="over_25" data-outcome="over" data-match="Glasgow Rangers vs Hibernian FC" data-selection="Over 2.5" data-odds="1.56" data-bk="Stake"><span class="label">Over 2.5</span><span class="px ab-px-odds" data-decimal="1.56">1.56</span></button>
+    <button class="ab-mkt ab-px" data-event="70674830" data-market="over_25" data-outcome="under" data-match="Glasgow Rangers vs Hibernian FC" data-selection="Under 2.5" data-odds="2.38" data-bk="Rainbet"><span class="label">Under 2.5</span><span class="px ab-px-odds" data-decimal="2.38">2.38</span></button>
   </div>
 </div></div>
 
   <aside class="ab-slip" aria-label="Bet slip">
-    <header class="slip-head">
-      <h3>Your slip</h3>
-      <button class="slip-clear">Clear</button>
+    <header class="slip-head" style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+      <h3>Your slip <span id="slipLegCount" class="chip is-soon" style="margin-left:6px">0</span></h3>
+      <button class="btn-ghost slip-clear" style="padding:6px 12px;font-size:12px;min-height:32px">Clear</button>
     </header>
-    <ol class="slip-legs" id="slipLegs"><li class="slip-empty">No selections yet. Pick from the matches.</li></ol>
-    <div class="slip-stats">
-      <div><span class="slip-label">Legs</span><span class="slip-val" id="slipLegCount">0</span></div>
-      <div><span class="slip-label">Combined</span><span class="slip-val odds-display" id="slipOdds" data-decimal="1">—</span></div>
-      <div><span class="slip-label">Returns on <span class="stake-amt">10</span></span><span class="slip-val" id="slipReturn">—</span></div>
+    <ol class="slip-legs" id="slipLegs"><li class="slip-empty" style="color:var(--ink-3);font-size:13px;padding:8px 0">No selections yet. Tap a price to add it.</li></ol>
+    <div class="slip-total">
+      <span class="label">Combined</span>
+      <span class="value odds-display" id="slipOdds" data-decimal="1">—</span>
     </div>
-    <div class="stake-row">
-      <label>Stake</label>
-      <div class="stake-chips">
-        <button class="chip" data-stake="5">5</button>
-        <button class="chip is-active" data-stake="10">10</button>
-        <button class="chip" data-stake="25">25</button>
-        <button class="chip" data-stake="50">50</button>
-        <button class="chip" data-stake="100">100</button>
+    <div class="slip-stake">
+      <div class="stake-row">
+        <span class="label">Returns on <span class="stake-amt">10</span></span>
+        <span class="value" id="slipReturn">—</span>
+      </div>
+      <div class="ab-auto" style="margin-top:0">
+        <button class="auto-btn chip" data-stake="5">5</button>
+        <button class="auto-btn chip is-active" data-stake="10">10</button>
+        <button class="auto-btn chip" data-stake="25">25</button>
+        <button class="auto-btn chip" data-stake="50">50</button>
+        <button class="auto-btn chip" data-stake="100">100</button>
       </div>
     </div>
-    <a class="bet-cta" id="slipBet" href="../link/bet365.html" rel="nofollow sponsored noopener" target="_blank">Place at Bet365 →</a>
+    <a class="btn-primary" id="slipBet" href="../link/bet365.html" rel="nofollow sponsored noopener" target="_blank">Place at bet365</a>
   </aside>
 </div>
 </main>
+<nav class="tabbar" aria-label="Primary">
+  <a href="../index.html" class="tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v11a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1z"/></svg>
+    <span>Accas</span>
+  </a>
+  <a href="../tools/acca-builder.html" class="tab is-active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="19" cy="12" r="2"/><circle cx="15" cy="18" r="2"/></svg>
+    <span>Builder</span>
+  </a>
+  <a href="../tips/index.html" class="tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.6-.5z"/></svg>
+    <span>Tips</span>
+  </a>
+  <a href="../bookmakers/index.html" class="tab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M8 15h3"/></svg>
+    <span>Books</span>
+  </a>
+</nav>
 <footer class="site-footer">
-  <div class="foot-grid">
+  <div class="footer-inner">
     <div>
-      <h4>Resources</h4>
-      <a href="../guides/index.html">Guides</a>
-      <a href="../tools/calculators.html">Calculators</a>
-      <a href="../betting/index.html">Betting basics</a>
-      <a href="../leagues/index.html">League hubs</a>
+      <div class="brand" style="margin-bottom:12px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="22" height="22" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/>
+        </svg>
+        <span>Football<b>Accas</b></span>
+      </div>
+      <p>Algorithmic accumulator tips refreshed hourly from six bookmakers across eight leagues. 18+ only. BeGambleAware.org.</p>
     </div>
     <div>
-      <h4>Tips</h4>
-      <a href="../tips/win-acca.html">Win Acca</a>
-      <a href="../tips/btts.html">BTTS Acca</a>
-      <a href="../tips/over-25-goals.html">Over 2.5</a>
+      <h4>Picks</h4>
       <a href="../tips/safe-acca.html">Safe Acca</a>
-      <a href="../tips/value-acca.html">Value Acca</a>
+      <a href="../tips/win-acca.html">Win Acca</a>
+      <a href="../tips/btts.html">BTTS</a>
+      <a href="../tips/over-25-goals.html">Over 2.5</a>
+      <a href="../tips/value-acca.html">Value</a>
     </div>
     <div>
-      <h4>Bookmakers</h4>
-      <a href="../bookmakers/index.html">All bookmakers</a>
-      <a href="../link/bet365.html" rel="nofollow sponsored noopener" target="_blank">Bet365</a>
+      <h4>Tools</h4>
+      <a href="../tools/acca-builder.html">Acca Builder</a>
+      <a href="../tools/calculators.html">Calculators</a>
+      <a href="../guides/index.html">Guides</a>
+      <a href="../leagues/index.html">Leagues</a>
+    </div>
+    <div>
+      <h4>Books</h4>
       <a href="../link/stake.html" rel="nofollow sponsored noopener" target="_blank">Stake</a>
+      <a href="../link/bet365.html" rel="nofollow sponsored noopener" target="_blank">bet365</a>
       <a href="../link/1xbet.html" rel="nofollow sponsored noopener" target="_blank">1xBet</a>
-    </div>
-    <div>
-      <h4>About</h4>
-      <p class="small">Algorithmic accumulator tips refreshed hourly from 6 bookmakers across 8 leagues. 18+ only. BeGambleAware.org.</p>
+      <a href="../bookmakers/index.html">All books</a>
     </div>
   </div>
-  <div class="foot-base">
-    <span>© 2026 FootballAccumulators</span>
-    <span class="last-update">Last updated <span class="updated-ago" data-utc="2026-05-11T19:43:00.044599+00:00">just now</span></span>
+  <div class="footer-legal">
+    <span>© 2026 FootballAccumulators · 18+ · Play responsibly</span>
+    <span class="last-update">Last updated <span class="updated-ago" data-utc="2026-05-11T21:01:29.189822+00:00">just now</span></span>
   </div>
 </footer>
 <script src="../assets/app.js" defer></script>
